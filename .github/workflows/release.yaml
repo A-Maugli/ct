@@ -1,0 +1,38 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - 'docs/**'
+      - '**.md'
+      - '.vscode/**'
+      - '.idea/**'
+
+permissions:
+  contents: read
+  packages: read
+
+jobs:
+  ct-contracts-validate:
+    name: Run ct-contracts release
+    secrets: inherit
+    uses: ./.github/workflows/ct-contracts-ci.yaml
+
+  ct-contracts-release:
+    name: Run ct-contracts release
+    secrets: inherit
+    uses: ./.github/workflows/ct-contracts-cd.yaml
+    needs: ct-contracts-validate
+
+  ct-frontend-validate:
+    name: Run ct-frontend release
+    secrets: inherit
+    uses: ./.github/workflows/ct-frontend-ci.yaml
+
+  ct-frontend-release:
+    name: Run ct-frontend release
+    secrets: inherit
+    uses: ./.github/workflows/ct-frontend-cd.yaml
+    needs: ct-frontend-validate

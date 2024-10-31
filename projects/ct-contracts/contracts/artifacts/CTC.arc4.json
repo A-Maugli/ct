@@ -3,47 +3,166 @@
   "desc": "",
   "methods": [
     {
-      "name": "doMath",
-      "desc": "A method that takes two numbers and does either addition or subtraction",
-      "args": [
-        {
-          "name": "a",
-          "type": "uint64",
-          "desc": "The first uint64"
-        },
-        {
-          "name": "b",
-          "type": "uint64",
-          "desc": "The second uint64"
-        },
-        {
-          "name": "operation",
-          "type": "string",
-          "desc": "The operation to perform. Can be either 'sum' or 'difference'"
-        }
-      ],
+      "name": "createApplication",
+      "desc": "Init the values of global keys",
+      "args": [],
       "returns": {
-        "type": "uint64",
-        "desc": "The result of the operation"
+        "type": "void"
       }
     },
     {
-      "name": "hello",
-      "desc": "A demonstration method used in the AlgoKit fullstack template.\nGreets the user by name.",
+      "name": "bootstrap",
+      "desc": "create ASA, set global key values",
       "args": [
         {
-          "name": "name",
-          "type": "string",
-          "desc": "The name of the user to greet."
+          "name": "assetPrice",
+          "type": "uint64",
+          "desc": "ASA price in microAlgos"
+        },
+        {
+          "name": "assetAmount",
+          "type": "uint64",
+          "desc": "ASA inital amount in pieces"
+        },
+        {
+          "name": "sellPeriodLength",
+          "type": "uint64",
+          "desc": "sell period length in secs"
+        },
+        {
+          "name": "assetValidityPeriod",
+          "type": "uint64",
+          "desc": "asset validity in secs, after that time it can be clawbacked"
         }
       ],
+      "returns": {
+        "type": "void"
+      }
+    },
+    {
+      "name": "getAppCreatorAddress",
+      "desc": "get app creator address",
+      "args": [],
+      "returns": {
+        "type": "address",
+        "desc": "app creator address"
+      }
+    },
+    {
+      "name": "getAppVersion",
+      "desc": "get app version",
+      "args": [],
       "returns": {
         "type": "string",
-        "desc": "A greeting message to the user."
+        "desc": "app version"
       }
     },
     {
-      "name": "createApplication",
+      "name": "getAssetAmountInitial",
+      "desc": "get asa initial amount",
+      "args": [],
+      "returns": {
+        "type": "uint64",
+        "desc": "asa amount minted initially"
+      }
+    },
+    {
+      "name": "getAssetAmount",
+      "desc": "get asa amount",
+      "args": [],
+      "returns": {
+        "type": "uint64",
+        "desc": "sellable asa amount"
+      }
+    },
+    {
+      "name": "getAssetPrice",
+      "desc": "get asa price",
+      "args": [],
+      "returns": {
+        "type": "uint64",
+        "desc": "asa price in microAlgos"
+      }
+    },
+    {
+      "name": "getAssetID",
+      "desc": "get asa id",
+      "args": [],
+      "returns": {
+        "type": "uint64",
+        "desc": "asa id"
+      }
+    },
+    {
+      "name": "getSellPeriodEnd",
+      "desc": "get end of sell period",
+      "args": [],
+      "returns": {
+        "type": "uint64",
+        "desc": "end of sell period as absolute time in sec, from 01-Jan-1970"
+      }
+    },
+    {
+      "name": "buyAsset",
+      "desc": "Buy 1 piece of the asset",
+      "args": [
+        {
+          "name": "payment",
+          "type": "pay",
+          "desc": "txn, where amount is equal to assetPrice, receiver is app address"
+        }
+      ],
+      "returns": {
+        "type": "void"
+      }
+    },
+    {
+      "name": "sendAlgosToCreator",
+      "desc": "Send Algos from the app address to the app creator address",
+      "args": [],
+      "returns": {
+        "type": "void"
+      }
+    },
+    {
+      "name": "clawback",
+      "desc": "Clawback asset to app & inc amount",
+      "args": [
+        {
+          "name": "addr",
+          "type": "address",
+          "desc": "address from which to clawback asset"
+        }
+      ],
+      "returns": {
+        "type": "void"
+      }
+    },
+    {
+      "name": "clawbackNoIncAmount",
+      "desc": "Clawback asset to app without incrementing amount\nThis method is called when the property has been bought, and the coin has been shown",
+      "args": [
+        {
+          "name": "addr",
+          "type": "address",
+          "desc": "address from which to clawback asset"
+        }
+      ],
+      "returns": {
+        "type": "void"
+      }
+    },
+    {
+      "name": "deleteAsset",
+      "desc": "Delete asset within app",
+      "args": [],
+      "returns": {
+        "type": "void"
+      }
+    },
+    {
+      "name": "deleteApplication",
+      "desc": "Delete app with ABI method",
       "args": [],
       "returns": {
         "type": "void"

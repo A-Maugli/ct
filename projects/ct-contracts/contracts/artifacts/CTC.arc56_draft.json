@@ -3,59 +3,8 @@
   "desc": "",
   "methods": [
     {
-      "name": "doMath",
-      "desc": "A method that takes two numbers and does either addition or subtraction",
-      "args": [
-        {
-          "name": "a",
-          "type": "uint64",
-          "desc": "The first uint64"
-        },
-        {
-          "name": "b",
-          "type": "uint64",
-          "desc": "The second uint64"
-        },
-        {
-          "name": "operation",
-          "type": "string",
-          "desc": "The operation to perform. Can be either 'sum' or 'difference'"
-        }
-      ],
-      "returns": {
-        "type": "uint64",
-        "desc": "The result of the operation"
-      },
-      "actions": {
-        "create": [],
-        "call": [
-          "NoOp"
-        ]
-      }
-    },
-    {
-      "name": "hello",
-      "desc": "A demonstration method used in the AlgoKit fullstack template.\nGreets the user by name.",
-      "args": [
-        {
-          "name": "name",
-          "type": "string",
-          "desc": "The name of the user to greet."
-        }
-      ],
-      "returns": {
-        "type": "string",
-        "desc": "A greeting message to the user."
-      },
-      "actions": {
-        "create": [],
-        "call": [
-          "NoOp"
-        ]
-      }
-    },
-    {
       "name": "createApplication",
+      "desc": "Init the values of global keys",
       "args": [],
       "returns": {
         "type": "void"
@@ -65,6 +14,248 @@
           "NoOp"
         ],
         "call": []
+      }
+    },
+    {
+      "name": "bootstrap",
+      "desc": "create ASA, set global key values",
+      "args": [
+        {
+          "name": "assetPrice",
+          "type": "uint64",
+          "desc": "ASA price in microAlgos"
+        },
+        {
+          "name": "assetAmount",
+          "type": "uint64",
+          "desc": "ASA inital amount in pieces"
+        },
+        {
+          "name": "sellPeriodLength",
+          "type": "uint64",
+          "desc": "sell period length in secs"
+        },
+        {
+          "name": "assetValidityPeriod",
+          "type": "uint64",
+          "desc": "asset validity in secs, after that time it can be clawbacked"
+        }
+      ],
+      "returns": {
+        "type": "void"
+      },
+      "actions": {
+        "create": [],
+        "call": [
+          "NoOp"
+        ]
+      }
+    },
+    {
+      "name": "getAppCreatorAddress",
+      "desc": "get app creator address",
+      "args": [],
+      "returns": {
+        "type": "address",
+        "desc": "app creator address"
+      },
+      "actions": {
+        "create": [],
+        "call": [
+          "NoOp"
+        ]
+      }
+    },
+    {
+      "name": "getAppVersion",
+      "desc": "get app version",
+      "args": [],
+      "returns": {
+        "type": "string",
+        "desc": "app version"
+      },
+      "actions": {
+        "create": [],
+        "call": [
+          "NoOp"
+        ]
+      }
+    },
+    {
+      "name": "getAssetAmountInitial",
+      "desc": "get asa initial amount",
+      "args": [],
+      "returns": {
+        "type": "uint64",
+        "desc": "asa amount minted initially"
+      },
+      "actions": {
+        "create": [],
+        "call": [
+          "NoOp"
+        ]
+      }
+    },
+    {
+      "name": "getAssetAmount",
+      "desc": "get asa amount",
+      "args": [],
+      "returns": {
+        "type": "uint64",
+        "desc": "sellable asa amount"
+      },
+      "actions": {
+        "create": [],
+        "call": [
+          "NoOp"
+        ]
+      }
+    },
+    {
+      "name": "getAssetPrice",
+      "desc": "get asa price",
+      "args": [],
+      "returns": {
+        "type": "uint64",
+        "desc": "asa price in microAlgos"
+      },
+      "actions": {
+        "create": [],
+        "call": [
+          "NoOp"
+        ]
+      }
+    },
+    {
+      "name": "getAssetID",
+      "desc": "get asa id",
+      "args": [],
+      "returns": {
+        "type": "uint64",
+        "desc": "asa id"
+      },
+      "actions": {
+        "create": [],
+        "call": [
+          "NoOp"
+        ]
+      }
+    },
+    {
+      "name": "getSellPeriodEnd",
+      "desc": "get end of sell period",
+      "args": [],
+      "returns": {
+        "type": "uint64",
+        "desc": "end of sell period as absolute time in sec, from 01-Jan-1970"
+      },
+      "actions": {
+        "create": [],
+        "call": [
+          "NoOp"
+        ]
+      }
+    },
+    {
+      "name": "buyAsset",
+      "desc": "Buy 1 piece of the asset",
+      "args": [
+        {
+          "name": "payment",
+          "type": "pay",
+          "desc": "txn, where amount is equal to assetPrice, receiver is app address"
+        }
+      ],
+      "returns": {
+        "type": "void"
+      },
+      "actions": {
+        "create": [],
+        "call": [
+          "NoOp"
+        ]
+      }
+    },
+    {
+      "name": "sendAlgosToCreator",
+      "desc": "Send Algos from the app address to the app creator address",
+      "args": [],
+      "returns": {
+        "type": "void"
+      },
+      "actions": {
+        "create": [],
+        "call": [
+          "NoOp"
+        ]
+      }
+    },
+    {
+      "name": "clawback",
+      "desc": "Clawback asset to app & inc amount",
+      "args": [
+        {
+          "name": "addr",
+          "type": "address",
+          "desc": "address from which to clawback asset"
+        }
+      ],
+      "returns": {
+        "type": "void"
+      },
+      "actions": {
+        "create": [],
+        "call": [
+          "NoOp"
+        ]
+      }
+    },
+    {
+      "name": "clawbackNoIncAmount",
+      "desc": "Clawback asset to app without incrementing amount\nThis method is called when the property has been bought, and the coin has been shown",
+      "args": [
+        {
+          "name": "addr",
+          "type": "address",
+          "desc": "address from which to clawback asset"
+        }
+      ],
+      "returns": {
+        "type": "void"
+      },
+      "actions": {
+        "create": [],
+        "call": [
+          "NoOp"
+        ]
+      }
+    },
+    {
+      "name": "deleteAsset",
+      "desc": "Delete asset within app",
+      "args": [],
+      "returns": {
+        "type": "void"
+      },
+      "actions": {
+        "create": [],
+        "call": [
+          "NoOp"
+        ]
+      }
+    },
+    {
+      "name": "deleteApplication",
+      "desc": "Delete app with ABI method",
+      "args": [],
+      "returns": {
+        "type": "void"
+      },
+      "actions": {
+        "create": [],
+        "call": [
+          "DeleteApplication"
+        ]
       }
     }
   ],
@@ -76,8 +267,8 @@
   "state": {
     "schema": {
       "global": {
-        "bytes": 0,
-        "ints": 0
+        "bytes": 2,
+        "ints": 6
       },
       "local": {
         "bytes": 0,
@@ -85,7 +276,48 @@
       }
     },
     "keys": {
-      "global": {},
+      "global": {
+        "appVersion": {
+          "key": "YXB2",
+          "keyType": "AVMBytes",
+          "valueType": "string"
+        },
+        "appCreatorAddress": {
+          "key": "YXBjYQ==",
+          "keyType": "AVMBytes",
+          "valueType": "address"
+        },
+        "assetAmountInitial": {
+          "key": "YXNhX3RvdGFs",
+          "keyType": "AVMBytes",
+          "valueType": "uint64"
+        },
+        "assetAmount": {
+          "key": "YXNhX2FtdA==",
+          "keyType": "AVMBytes",
+          "valueType": "uint64"
+        },
+        "assetPrice": {
+          "key": "YXNhX3ByaWNl",
+          "keyType": "AVMBytes",
+          "valueType": "uint64"
+        },
+        "asset": {
+          "key": "YXNhX2lk",
+          "keyType": "AVMBytes",
+          "valueType": "uint64"
+        },
+        "sellPeriodEnd": {
+          "key": "ZW5k",
+          "keyType": "AVMBytes",
+          "valueType": "uint64"
+        },
+        "assetValidityPeriod": {
+          "key": "YXNhX3Y=",
+          "keyType": "AVMBytes",
+          "valueType": "uint64"
+        }
+      },
       "local": {},
       "box": {}
     },
@@ -104,82 +336,40 @@
       "sourceInfo": [
         {
           "teal": 1,
-          "source": "contracts\\CTC.algo.ts:3",
+          "source": "contracts\\CTC.algo.ts:14",
           "pc": [
             0
           ]
         },
         {
           "teal": 2,
-          "source": "contracts\\CTC.algo.ts:3",
+          "source": "contracts\\CTC.algo.ts:14",
           "pc": [
             1,
             2,
-            3
-          ]
-        },
-        {
-          "teal": 3,
-          "source": "contracts\\CTC.algo.ts:3",
-          "pc": [
+            3,
             4,
             5,
             6,
             7,
             8,
             9,
-            10
+            10,
+            11
           ]
         },
         {
-          "teal": 15,
-          "source": "contracts\\CTC.algo.ts:3",
+          "teal": 3,
+          "source": "contracts\\CTC.algo.ts:14",
           "pc": [
-            11,
-            12
-          ]
-        },
-        {
-          "teal": 16,
-          "source": "contracts\\CTC.algo.ts:3",
-          "pc": [
-            13
-          ]
-        },
-        {
-          "teal": 17,
-          "source": "contracts\\CTC.algo.ts:3",
-          "pc": [
+            12,
+            13,
             14,
-            15
-          ]
-        },
-        {
-          "teal": 18,
-          "source": "contracts\\CTC.algo.ts:3",
-          "pc": [
-            16
-          ]
-        },
-        {
-          "teal": 19,
-          "source": "contracts\\CTC.algo.ts:3",
-          "pc": [
+            15,
+            16,
             17,
-            18
-          ]
-        },
-        {
-          "teal": 20,
-          "source": "contracts\\CTC.algo.ts:3",
-          "pc": [
-            19
-          ]
-        },
-        {
-          "teal": 21,
-          "source": "contracts\\CTC.algo.ts:3",
-          "pc": [
+            18,
+            19,
             20,
             21,
             22,
@@ -205,488 +395,409 @@
             42,
             43,
             44,
-            45
-          ]
-        },
-        {
-          "teal": 25,
-          "source": "contracts\\CTC.algo.ts:3",
-          "errorMessage": "The requested action is not implemented in this contract. Are you using the correct OnComplete? Did you set your app ID?",
-          "pc": [
-            46
-          ]
-        },
-        {
-          "teal": 35,
-          "source": "contracts\\CTC.algo.ts:11",
-          "pc": [
+            45,
+            46,
             47,
             48,
-            49
-          ]
-        },
-        {
-          "teal": 39,
-          "source": "contracts\\CTC.algo.ts:12",
-          "pc": [
+            49,
             50,
-            51
-          ]
-        },
-        {
-          "teal": 40,
-          "source": "contracts\\CTC.algo.ts:12",
-          "pc": [
+            51,
             52,
-            53
-          ]
-        },
-        {
-          "teal": 41,
-          "source": "contracts\\CTC.algo.ts:12",
-          "pc": [
-            54
-          ]
-        },
-        {
-          "teal": 42,
-          "source": "contracts\\CTC.algo.ts:11",
-          "pc": [
-            55
-          ]
-        },
-        {
-          "teal": 52,
-          "source": "contracts\\CTC.algo.ts:22",
-          "pc": [
+            53,
+            54,
+            55,
             56,
             57,
-            58
-          ]
-        },
-        {
-          "teal": 56,
-          "source": "contracts\\CTC.algo.ts:23",
-          "pc": [
+            58,
             59,
-            60
-          ]
-        },
-        {
-          "teal": 57,
-          "source": "contracts\\CTC.algo.ts:23",
-          "pc": [
+            60,
             61,
-            62
-          ]
-        },
-        {
-          "teal": 58,
-          "source": "contracts\\CTC.algo.ts:23",
-          "pc": [
-            63
-          ]
-        },
-        {
-          "teal": 59,
-          "source": "contracts\\CTC.algo.ts:23",
-          "pc": [
+            62,
+            63,
             64,
             65,
-            66
-          ]
-        },
-        {
-          "teal": 60,
-          "source": "contracts\\CTC.algo.ts:23",
-          "pc": [
+            66,
             67,
-            68
-          ]
-        },
-        {
-          "teal": 61,
-          "source": "contracts\\CTC.algo.ts:23",
-          "pc": [
+            68,
             69,
-            70
-          ]
-        },
-        {
-          "teal": 62,
-          "source": "contracts\\CTC.algo.ts:23",
-          "pc": [
-            71
-          ]
-        },
-        {
-          "teal": 63,
-          "source": "contracts\\CTC.algo.ts:23",
-          "pc": [
+            70,
+            71,
             72,
-            73,
-            74
+            73
           ]
         },
         {
-          "teal": 66,
-          "source": "contracts\\CTC.algo.ts:23",
+          "teal": 15,
+          "source": "contracts\\CTC.algo.ts:14",
           "pc": [
-            75,
+            74,
+            75
+          ]
+        },
+        {
+          "teal": 16,
+          "source": "contracts\\CTC.algo.ts:14",
+          "pc": [
             76
           ]
         },
         {
-          "teal": 67,
-          "source": "contracts\\CTC.algo.ts:23",
+          "teal": 17,
+          "source": "contracts\\CTC.algo.ts:14",
           "pc": [
             77,
             78
           ]
         },
         {
-          "teal": 68,
-          "source": "contracts\\CTC.algo.ts:23",
+          "teal": 18,
+          "source": "contracts\\CTC.algo.ts:14",
           "pc": [
             79
           ]
         },
         {
-          "teal": 71,
-          "source": "contracts\\CTC.algo.ts:22",
+          "teal": 19,
+          "source": "contracts\\CTC.algo.ts:14",
           "pc": [
-            80
-          ]
-        },
-        {
-          "teal": 76,
-          "source": "contracts\\CTC.algo.ts:35",
-          "pc": [
+            80,
             81
           ]
         },
         {
-          "teal": 79,
-          "source": "contracts\\CTC.algo.ts:35",
+          "teal": 20,
+          "source": "contracts\\CTC.algo.ts:14",
           "pc": [
-            82,
-            83,
-            84
+            82
           ]
         },
         {
-          "teal": 80,
-          "source": "contracts\\CTC.algo.ts:35",
+          "teal": 21,
+          "source": "contracts\\CTC.algo.ts:14",
           "pc": [
+            83,
+            84,
             85,
             86,
-            87
-          ]
-        },
-        {
-          "teal": 83,
-          "source": "contracts\\CTC.algo.ts:35",
-          "pc": [
+            87,
             88,
             89,
-            90
-          ]
-        },
-        {
-          "teal": 84,
-          "source": "contracts\\CTC.algo.ts:35",
-          "pc": [
-            91
-          ]
-        },
-        {
-          "teal": 87,
-          "source": "contracts\\CTC.algo.ts:35",
-          "pc": [
+            90,
+            91,
             92,
             93,
-            94
-          ]
-        },
-        {
-          "teal": 88,
-          "source": "contracts\\CTC.algo.ts:35",
-          "pc": [
-            95
-          ]
-        },
-        {
-          "teal": 91,
-          "source": "contracts\\CTC.algo.ts:35",
-          "pc": [
+            94,
+            95,
             96,
             97,
-            98
-          ]
-        },
-        {
-          "teal": 92,
-          "source": "contracts\\CTC.algo.ts:35",
-          "pc": [
-            99
-          ]
-        },
-        {
-          "teal": 93,
-          "source": "contracts\\CTC.algo.ts:35",
-          "pc": [
-            100
-          ]
-        },
-        {
-          "teal": 94,
-          "source": "contracts\\CTC.algo.ts:35",
-          "pc": [
-            101
-          ]
-        },
-        {
-          "teal": 95,
-          "source": "contracts\\CTC.algo.ts:35",
-          "pc": [
-            102
-          ]
-        },
-        {
-          "teal": 96,
-          "source": "contracts\\CTC.algo.ts:35",
-          "pc": [
-            103
-          ]
-        },
-        {
-          "teal": 108,
-          "source": "contracts\\CTC.algo.ts:35",
-          "pc": [
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
             104,
             105,
-            106
-          ]
-        },
-        {
-          "teal": 111,
-          "source": "contracts\\CTC.algo.ts:35",
-          "pc": [
+            106,
             107,
             108
           ]
         },
         {
-          "teal": 116,
-          "source": "contracts\\CTC.algo.ts:38",
+          "teal": 25,
+          "source": "contracts\\CTC.algo.ts:14",
+          "errorMessage": "The requested action is not implemented in this contract. Are you using the correct OnComplete? Did you set your app ID?",
           "pc": [
-            109,
-            110
+            109
           ]
         },
         {
-          "teal": 117,
-          "source": "contracts\\CTC.algo.ts:38",
+          "teal": 30,
+          "source": "contracts\\CTC.algo.ts:34",
           "pc": [
+            110,
             111,
-            112,
-            113,
-            114,
-            115
+            112
           ]
         },
         {
-          "teal": 118,
-          "source": "contracts\\CTC.algo.ts:38",
+          "teal": 31,
+          "source": "contracts\\CTC.algo.ts:34",
           "pc": [
-            116
+            113
           ]
         },
         {
-          "teal": 119,
-          "source": "contracts\\CTC.algo.ts:38",
+          "teal": 32,
+          "source": "contracts\\CTC.algo.ts:34",
           "pc": [
-            117,
+            114
+          ]
+        },
+        {
+          "teal": 38,
+          "source": "contracts\\CTC.algo.ts:34",
+          "pc": [
+            115,
+            116,
+            117
+          ]
+        },
+        {
+          "teal": 42,
+          "source": "contracts\\CTC.algo.ts:35",
+          "pc": [
             118,
             119
           ]
         },
         {
-          "teal": 124,
-          "source": "contracts\\CTC.algo.ts:39",
+          "teal": 43,
+          "source": "contracts\\CTC.algo.ts:35",
           "pc": [
             120,
-            121
-          ]
-        },
-        {
-          "teal": 125,
-          "source": "contracts\\CTC.algo.ts:39",
-          "pc": [
+            121,
             122,
-            123
-          ]
-        },
-        {
-          "teal": 126,
-          "source": "contracts\\CTC.algo.ts:39",
-          "pc": [
+            123,
             124,
             125,
-            126
+            126,
+            127
           ]
         },
         {
-          "teal": 127,
-          "source": "contracts\\CTC.algo.ts:39",
+          "teal": 44,
+          "source": "contracts\\CTC.algo.ts:35",
           "pc": [
-            127,
             128
           ]
         },
         {
-          "teal": 128,
-          "source": "contracts\\CTC.algo.ts:38",
+          "teal": 48,
+          "source": "contracts\\CTC.algo.ts:36",
           "pc": [
             129,
-            130,
-            131
+            130
           ]
         },
         {
-          "teal": 133,
-          "source": "contracts\\CTC.algo.ts:40",
+          "teal": 49,
+          "source": "contracts\\CTC.algo.ts:36",
           "pc": [
-            132,
+            131,
+            132
+          ]
+        },
+        {
+          "teal": 50,
+          "source": "contracts\\CTC.algo.ts:36",
+          "pc": [
             133
           ]
         },
         {
-          "teal": 134,
+          "teal": 54,
+          "source": "contracts\\CTC.algo.ts:37",
+          "pc": [
+            134
+          ]
+        },
+        {
+          "teal": 55,
+          "source": "contracts\\CTC.algo.ts:37",
+          "pc": [
+            135
+          ]
+        },
+        {
+          "teal": 56,
+          "source": "contracts\\CTC.algo.ts:37",
+          "pc": [
+            136
+          ]
+        },
+        {
+          "teal": 60,
+          "source": "contracts\\CTC.algo.ts:38",
+          "pc": [
+            137
+          ]
+        },
+        {
+          "teal": 61,
+          "source": "contracts\\CTC.algo.ts:38",
+          "pc": [
+            138
+          ]
+        },
+        {
+          "teal": 62,
+          "source": "contracts\\CTC.algo.ts:38",
+          "pc": [
+            139
+          ]
+        },
+        {
+          "teal": 66,
+          "source": "contracts\\CTC.algo.ts:39",
+          "pc": [
+            140,
+            141
+          ]
+        },
+        {
+          "teal": 67,
+          "source": "contracts\\CTC.algo.ts:39",
+          "pc": [
+            142
+          ]
+        },
+        {
+          "teal": 68,
+          "source": "contracts\\CTC.algo.ts:39",
+          "pc": [
+            143
+          ]
+        },
+        {
+          "teal": 72,
           "source": "contracts\\CTC.algo.ts:40",
           "pc": [
-            134,
-            135,
-            136,
-            137,
-            138,
-            139,
-            140,
-            141,
-            142,
-            143,
-            144,
+            144
+          ]
+        },
+        {
+          "teal": 73,
+          "source": "contracts\\CTC.algo.ts:40",
+          "pc": [
             145
           ]
         },
         {
-          "teal": 135,
+          "teal": 74,
           "source": "contracts\\CTC.algo.ts:40",
           "pc": [
             146
           ]
         },
         {
-          "teal": 136,
-          "source": "contracts\\CTC.algo.ts:40",
+          "teal": 78,
+          "source": "contracts\\CTC.algo.ts:41",
           "pc": [
             147,
-            148,
+            148
+          ]
+        },
+        {
+          "teal": 79,
+          "source": "contracts\\CTC.algo.ts:41",
+          "pc": [
             149
           ]
         },
         {
-          "teal": 141,
+          "teal": 80,
           "source": "contracts\\CTC.algo.ts:41",
           "pc": [
-            150,
-            151
+            150
           ]
         },
         {
-          "teal": 142,
-          "source": "contracts\\CTC.algo.ts:41",
+          "teal": 84,
+          "source": "contracts\\CTC.algo.ts:42",
           "pc": [
-            152,
+            151,
+            152
+          ]
+        },
+        {
+          "teal": 85,
+          "source": "contracts\\CTC.algo.ts:42",
+          "pc": [
             153
           ]
         },
         {
-          "teal": 143,
-          "source": "contracts\\CTC.algo.ts:41",
+          "teal": 86,
+          "source": "contracts\\CTC.algo.ts:42",
           "pc": [
-            154,
-            155,
-            156
+            154
           ]
         },
         {
-          "teal": 144,
-          "source": "contracts\\CTC.algo.ts:41",
+          "teal": 87,
+          "source": "contracts\\CTC.algo.ts:34",
           "pc": [
+            155
+          ]
+        },
+        {
+          "teal": 92,
+          "source": "contracts\\CTC.algo.ts:52",
+          "pc": [
+            156,
             157,
             158
           ]
         },
         {
-          "teal": 145,
-          "source": "contracts\\CTC.algo.ts:40",
+          "teal": 93,
+          "source": "contracts\\CTC.algo.ts:52",
           "pc": [
-            159,
-            160,
-            161
+            159
           ]
         },
         {
-          "teal": 149,
-          "source": "contracts\\CTC.algo.ts:42",
-          "errorMessage": "Invalid operation",
+          "teal": 96,
+          "source": "contracts\\CTC.algo.ts:52",
           "pc": [
+            160,
+            161,
             162
           ]
         },
         {
-          "teal": 154,
-          "source": "contracts\\CTC.algo.ts:44",
+          "teal": 97,
+          "source": "contracts\\CTC.algo.ts:52",
           "pc": [
-            163,
-            164
+            163
           ]
         },
         {
-          "teal": 157,
-          "source": "contracts\\CTC.algo.ts:35",
+          "teal": 100,
+          "source": "contracts\\CTC.algo.ts:52",
           "pc": [
+            164,
             165,
             166
           ]
         },
         {
-          "teal": 158,
-          "source": "contracts\\CTC.algo.ts:35",
+          "teal": 101,
+          "source": "contracts\\CTC.algo.ts:52",
           "pc": [
             167
           ]
         },
         {
-          "teal": 163,
-          "source": "contracts\\CTC.algo.ts:54",
+          "teal": 104,
+          "source": "contracts\\CTC.algo.ts:52",
           "pc": [
-            168
+            168,
+            169,
+            170
           ]
         },
         {
-          "teal": 166,
-          "source": "contracts\\CTC.algo.ts:54",
+          "teal": 105,
+          "source": "contracts\\CTC.algo.ts:52",
           "pc": [
-            169,
-            170,
             171
           ]
         },
         {
-          "teal": 167,
-          "source": "contracts\\CTC.algo.ts:54",
+          "teal": 108,
+          "source": "contracts\\CTC.algo.ts:52",
           "pc": [
             172,
             173,
@@ -694,236 +805,3294 @@
           ]
         },
         {
-          "teal": 170,
-          "source": "contracts\\CTC.algo.ts:54",
+          "teal": 109,
+          "source": "contracts\\CTC.algo.ts:52",
           "pc": [
-            175,
-            176,
-            177
+            175
           ]
         },
         {
-          "teal": 171,
-          "source": "contracts\\CTC.algo.ts:54",
+          "teal": 110,
+          "source": "contracts\\CTC.algo.ts:52",
           "pc": [
-            178
+            176
           ]
         },
         {
-          "teal": 172,
-          "source": "contracts\\CTC.algo.ts:54",
+          "teal": 120,
+          "source": "contracts\\CTC.algo.ts:52",
           "pc": [
+            177,
+            178,
             179
           ]
         },
         {
-          "teal": 173,
-          "source": "contracts\\CTC.algo.ts:54",
+          "teal": 123,
+          "source": "contracts\\CTC.algo.ts:52",
           "pc": [
-            180
+            180,
+            181
           ]
         },
         {
-          "teal": 174,
+          "teal": 129,
           "source": "contracts\\CTC.algo.ts:54",
           "pc": [
-            181,
             182,
             183
           ]
         },
         {
-          "teal": 175,
+          "teal": 130,
           "source": "contracts\\CTC.algo.ts:54",
           "pc": [
-            184
-          ]
-        },
-        {
-          "teal": 176,
-          "source": "contracts\\CTC.algo.ts:54",
-          "pc": [
+            184,
             185
           ]
         },
         {
-          "teal": 177,
+          "teal": 131,
           "source": "contracts\\CTC.algo.ts:54",
           "pc": [
             186
           ]
         },
         {
-          "teal": 178,
+          "teal": 134,
           "source": "contracts\\CTC.algo.ts:54",
+          "errorMessage": "transaction verification failed: {\"txn\":\"this.txn\",\"field\":\"sender\",\"expected\":\"globals.creatorAddress\"}",
           "pc": [
             187
           ]
         },
         {
-          "teal": 179,
-          "source": "contracts\\CTC.algo.ts:54",
+          "teal": 139,
+          "source": "contracts\\CTC.algo.ts:57",
           "pc": [
             188
           ]
         },
         {
-          "teal": 180,
-          "source": "contracts\\CTC.algo.ts:54",
+          "teal": 140,
+          "source": "contracts\\CTC.algo.ts:57",
           "pc": [
             189
           ]
         },
         {
-          "teal": 190,
-          "source": "contracts\\CTC.algo.ts:54",
+          "teal": 141,
+          "source": "contracts\\CTC.algo.ts:57",
           "pc": [
-            190,
-            191,
+            190
+          ]
+        },
+        {
+          "teal": 142,
+          "source": "contracts\\CTC.algo.ts:57",
+          "pc": [
+            191
+          ]
+        },
+        {
+          "teal": 143,
+          "source": "contracts\\CTC.algo.ts:57",
+          "pc": [
             192
           ]
         },
         {
-          "teal": 194,
-          "source": "contracts\\CTC.algo.ts:55",
+          "teal": 158,
+          "source": "contracts\\CTC.algo.ts:60",
           "pc": [
-            193,
+            193
+          ]
+        },
+        {
+          "teal": 159,
+          "source": "contracts\\CTC.algo.ts:60",
+          "pc": [
             194,
-            195,
+            195
+          ]
+        },
+        {
+          "teal": 160,
+          "source": "contracts\\CTC.algo.ts:60",
+          "pc": [
             196,
-            197,
+            197
+          ]
+        },
+        {
+          "teal": 164,
+          "source": "contracts\\CTC.algo.ts:61",
+          "pc": [
             198,
-            199,
+            199
+          ]
+        },
+        {
+          "teal": 165,
+          "source": "contracts\\CTC.algo.ts:61",
+          "pc": [
             200,
             201
           ]
         },
         {
-          "teal": 195,
-          "source": "contracts\\CTC.algo.ts:55",
+          "teal": 169,
+          "source": "contracts\\CTC.algo.ts:62",
           "pc": [
-            202,
-            203
+            202
           ]
         },
         {
-          "teal": 196,
-          "source": "contracts\\CTC.algo.ts:55",
+          "teal": 170,
+          "source": "contracts\\CTC.algo.ts:62",
           "pc": [
+            203,
             204
           ]
         },
         {
-          "teal": 197,
-          "source": "contracts\\CTC.algo.ts:54",
+          "teal": 174,
+          "source": "contracts\\CTC.algo.ts:63",
           "pc": [
-            205
-          ]
-        },
-        {
-          "teal": 200,
-          "source": "contracts\\CTC.algo.ts:3",
-          "pc": [
-            206
-          ]
-        },
-        {
-          "teal": 201,
-          "source": "contracts\\CTC.algo.ts:3",
-          "pc": [
-            207
-          ]
-        },
-        {
-          "teal": 204,
-          "source": "contracts\\CTC.algo.ts:3",
-          "pc": [
+            205,
+            206,
+            207,
             208,
             209,
             210,
             211,
             212,
-            213
-          ]
-        },
-        {
-          "teal": 205,
-          "source": "contracts\\CTC.algo.ts:3",
-          "pc": [
+            213,
             214,
             215,
-            216
-          ]
-        },
-        {
-          "teal": 206,
-          "source": "contracts\\CTC.algo.ts:3",
-          "pc": [
+            216,
             217,
             218,
             219,
-            220
-          ]
-        },
-        {
-          "teal": 209,
-          "source": "contracts\\CTC.algo.ts:3",
-          "errorMessage": "this contract does not implement the given ABI method for create NoOp",
-          "pc": [
-            221
-          ]
-        },
-        {
-          "teal": 212,
-          "source": "contracts\\CTC.algo.ts:3",
-          "pc": [
+            220,
+            221,
             222,
             223,
             224,
             225,
             226,
-            227
+            227,
+            228,
+            229,
+            230
+          ]
+        },
+        {
+          "teal": 175,
+          "source": "contracts\\CTC.algo.ts:63",
+          "pc": [
+            231,
+            232
+          ]
+        },
+        {
+          "teal": 179,
+          "source": "contracts\\CTC.algo.ts:64",
+          "pc": [
+            233,
+            234,
+            235,
+            236,
+            237,
+            238
+          ]
+        },
+        {
+          "teal": 180,
+          "source": "contracts\\CTC.algo.ts:64",
+          "pc": [
+            239,
+            240
+          ]
+        },
+        {
+          "teal": 184,
+          "source": "contracts\\CTC.algo.ts:65",
+          "pc": [
+            241,
+            242,
+            243,
+            244,
+            245,
+            246,
+            247,
+            248,
+            249,
+            250,
+            251,
+            252,
+            253,
+            254,
+            255,
+            256,
+            257,
+            258,
+            259,
+            260,
+            261,
+            262,
+            263,
+            264,
+            265,
+            266,
+            267,
+            268,
+            269,
+            270,
+            271,
+            272,
+            273,
+            274,
+            275,
+            276
+          ]
+        },
+        {
+          "teal": 185,
+          "source": "contracts\\CTC.algo.ts:65",
+          "pc": [
+            277,
+            278
+          ]
+        },
+        {
+          "teal": 189,
+          "source": "contracts\\CTC.algo.ts:66",
+          "pc": [
+            279
+          ]
+        },
+        {
+          "teal": 190,
+          "source": "contracts\\CTC.algo.ts:66",
+          "pc": [
+            280,
+            281
+          ]
+        },
+        {
+          "teal": 194,
+          "source": "contracts\\CTC.algo.ts:67",
+          "pc": [
+            282,
+            283
+          ]
+        },
+        {
+          "teal": 195,
+          "source": "contracts\\CTC.algo.ts:67",
+          "pc": [
+            284,
+            285
+          ]
+        },
+        {
+          "teal": 199,
+          "source": "contracts\\CTC.algo.ts:68",
+          "pc": [
+            286,
+            287
+          ]
+        },
+        {
+          "teal": 200,
+          "source": "contracts\\CTC.algo.ts:68",
+          "pc": [
+            288,
+            289
+          ]
+        },
+        {
+          "teal": 204,
+          "source": "contracts\\CTC.algo.ts:69",
+          "pc": [
+            290,
+            291
+          ]
+        },
+        {
+          "teal": 205,
+          "source": "contracts\\CTC.algo.ts:69",
+          "pc": [
+            292,
+            293
+          ]
+        },
+        {
+          "teal": 209,
+          "source": "contracts\\CTC.algo.ts:70",
+          "pc": [
+            294,
+            295
+          ]
+        },
+        {
+          "teal": 210,
+          "source": "contracts\\CTC.algo.ts:70",
+          "pc": [
+            296,
+            297
           ]
         },
         {
           "teal": 213,
-          "source": "contracts\\CTC.algo.ts:3",
+          "source": "contracts\\CTC.algo.ts:60",
           "pc": [
-            228,
-            229,
-            230,
-            231,
-            232,
-            233
+            298
           ]
         },
         {
           "teal": 214,
-          "source": "contracts\\CTC.algo.ts:3",
+          "source": "contracts\\CTC.algo.ts:60",
           "pc": [
-            234,
-            235,
-            236
+            299,
+            300
           ]
         },
         {
-          "teal": 215,
-          "source": "contracts\\CTC.algo.ts:3",
+          "teal": 217,
+          "source": "contracts\\CTC.algo.ts:60",
           "pc": [
-            237,
-            238,
-            239,
-            240,
-            241,
-            242
+            301
           ]
         },
         {
           "teal": 218,
-          "source": "contracts\\CTC.algo.ts:3",
+          "source": "contracts\\CTC.algo.ts:60",
+          "pc": [
+            302,
+            303
+          ]
+        },
+        {
+          "teal": 219,
+          "source": "contracts\\CTC.algo.ts:60",
+          "pc": [
+            304,
+            305
+          ]
+        },
+        {
+          "teal": 223,
+          "source": "contracts\\CTC.algo.ts:74",
+          "pc": [
+            306
+          ]
+        },
+        {
+          "teal": 224,
+          "source": "contracts\\CTC.algo.ts:74",
+          "pc": [
+            307,
+            308
+          ]
+        },
+        {
+          "teal": 225,
+          "source": "contracts\\CTC.algo.ts:74",
+          "pc": [
+            309
+          ]
+        },
+        {
+          "teal": 229,
+          "source": "contracts\\CTC.algo.ts:75",
+          "pc": [
+            310
+          ]
+        },
+        {
+          "teal": 230,
+          "source": "contracts\\CTC.algo.ts:75",
+          "pc": [
+            311,
+            312
+          ]
+        },
+        {
+          "teal": 231,
+          "source": "contracts\\CTC.algo.ts:75",
+          "pc": [
+            313
+          ]
+        },
+        {
+          "teal": 235,
+          "source": "contracts\\CTC.algo.ts:76",
+          "pc": [
+            314,
+            315
+          ]
+        },
+        {
+          "teal": 236,
+          "source": "contracts\\CTC.algo.ts:76",
+          "pc": [
+            316,
+            317
+          ]
+        },
+        {
+          "teal": 237,
+          "source": "contracts\\CTC.algo.ts:76",
+          "pc": [
+            318
+          ]
+        },
+        {
+          "teal": 241,
+          "source": "contracts\\CTC.algo.ts:77",
+          "pc": [
+            319
+          ]
+        },
+        {
+          "teal": 242,
+          "source": "contracts\\CTC.algo.ts:77",
+          "pc": [
+            320,
+            321
+          ]
+        },
+        {
+          "teal": 243,
+          "source": "contracts\\CTC.algo.ts:77",
+          "pc": [
+            322
+          ]
+        },
+        {
+          "teal": 247,
+          "source": "contracts\\CTC.algo.ts:78",
+          "pc": [
+            323,
+            324
+          ]
+        },
+        {
+          "teal": 248,
+          "source": "contracts\\CTC.algo.ts:78",
+          "pc": [
+            325,
+            326
+          ]
+        },
+        {
+          "teal": 249,
+          "source": "contracts\\CTC.algo.ts:78",
+          "pc": [
+            327,
+            328
+          ]
+        },
+        {
+          "teal": 250,
+          "source": "contracts\\CTC.algo.ts:78",
+          "pc": [
+            329
+          ]
+        },
+        {
+          "teal": 251,
+          "source": "contracts\\CTC.algo.ts:78",
+          "pc": [
+            330
+          ]
+        },
+        {
+          "teal": 255,
+          "source": "contracts\\CTC.algo.ts:79",
+          "pc": [
+            331,
+            332
+          ]
+        },
+        {
+          "teal": 256,
+          "source": "contracts\\CTC.algo.ts:79",
+          "pc": [
+            333,
+            334
+          ]
+        },
+        {
+          "teal": 257,
+          "source": "contracts\\CTC.algo.ts:79",
+          "pc": [
+            335
+          ]
+        },
+        {
+          "teal": 258,
+          "source": "contracts\\CTC.algo.ts:52",
+          "pc": [
+            336
+          ]
+        },
+        {
+          "teal": 263,
+          "source": "contracts\\CTC.algo.ts:86",
+          "pc": [
+            337
+          ]
+        },
+        {
+          "teal": 266,
+          "source": "contracts\\CTC.algo.ts:86",
+          "pc": [
+            338,
+            339,
+            340
+          ]
+        },
+        {
+          "teal": 267,
+          "source": "contracts\\CTC.algo.ts:86",
+          "pc": [
+            341
+          ]
+        },
+        {
+          "teal": 268,
+          "source": "contracts\\CTC.algo.ts:86",
+          "pc": [
+            342
+          ]
+        },
+        {
+          "teal": 269,
+          "source": "contracts\\CTC.algo.ts:86",
+          "pc": [
+            343
+          ]
+        },
+        {
+          "teal": 270,
+          "source": "contracts\\CTC.algo.ts:86",
+          "pc": [
+            344
+          ]
+        },
+        {
+          "teal": 277,
+          "source": "contracts\\CTC.algo.ts:86",
+          "pc": [
+            345,
+            346,
+            347
+          ]
+        },
+        {
+          "teal": 281,
+          "source": "contracts\\CTC.algo.ts:87",
+          "pc": [
+            348,
+            349
+          ]
+        },
+        {
+          "teal": 282,
+          "source": "contracts\\CTC.algo.ts:87",
+          "pc": [
+            350
+          ]
+        },
+        {
+          "teal": 283,
+          "source": "contracts\\CTC.algo.ts:86",
+          "pc": [
+            351
+          ]
+        },
+        {
+          "teal": 288,
+          "source": "contracts\\CTC.algo.ts:94",
+          "pc": [
+            352
+          ]
+        },
+        {
+          "teal": 291,
+          "source": "contracts\\CTC.algo.ts:94",
+          "pc": [
+            353,
+            354,
+            355
+          ]
+        },
+        {
+          "teal": 292,
+          "source": "contracts\\CTC.algo.ts:94",
+          "pc": [
+            356
+          ]
+        },
+        {
+          "teal": 293,
+          "source": "contracts\\CTC.algo.ts:94",
+          "pc": [
+            357
+          ]
+        },
+        {
+          "teal": 294,
+          "source": "contracts\\CTC.algo.ts:94",
+          "pc": [
+            358
+          ]
+        },
+        {
+          "teal": 295,
+          "source": "contracts\\CTC.algo.ts:94",
+          "pc": [
+            359,
+            360,
+            361
+          ]
+        },
+        {
+          "teal": 296,
+          "source": "contracts\\CTC.algo.ts:94",
+          "pc": [
+            362
+          ]
+        },
+        {
+          "teal": 297,
+          "source": "contracts\\CTC.algo.ts:94",
+          "pc": [
+            363
+          ]
+        },
+        {
+          "teal": 298,
+          "source": "contracts\\CTC.algo.ts:94",
+          "pc": [
+            364
+          ]
+        },
+        {
+          "teal": 299,
+          "source": "contracts\\CTC.algo.ts:94",
+          "pc": [
+            365
+          ]
+        },
+        {
+          "teal": 300,
+          "source": "contracts\\CTC.algo.ts:94",
+          "pc": [
+            366
+          ]
+        },
+        {
+          "teal": 301,
+          "source": "contracts\\CTC.algo.ts:94",
+          "pc": [
+            367
+          ]
+        },
+        {
+          "teal": 308,
+          "source": "contracts\\CTC.algo.ts:94",
+          "pc": [
+            368,
+            369,
+            370
+          ]
+        },
+        {
+          "teal": 312,
+          "source": "contracts\\CTC.algo.ts:95",
+          "pc": [
+            371,
+            372
+          ]
+        },
+        {
+          "teal": 313,
+          "source": "contracts\\CTC.algo.ts:95",
+          "pc": [
+            373
+          ]
+        },
+        {
+          "teal": 314,
+          "source": "contracts\\CTC.algo.ts:95",
+          "pc": [
+            374,
+            375,
+            376
+          ]
+        },
+        {
+          "teal": 315,
+          "source": "contracts\\CTC.algo.ts:94",
+          "pc": [
+            377
+          ]
+        },
+        {
+          "teal": 320,
+          "source": "contracts\\CTC.algo.ts:102",
+          "pc": [
+            378
+          ]
+        },
+        {
+          "teal": 323,
+          "source": "contracts\\CTC.algo.ts:102",
+          "pc": [
+            379,
+            380,
+            381
+          ]
+        },
+        {
+          "teal": 324,
+          "source": "contracts\\CTC.algo.ts:102",
+          "pc": [
+            382
+          ]
+        },
+        {
+          "teal": 325,
+          "source": "contracts\\CTC.algo.ts:102",
+          "pc": [
+            383
+          ]
+        },
+        {
+          "teal": 326,
+          "source": "contracts\\CTC.algo.ts:102",
+          "pc": [
+            384
+          ]
+        },
+        {
+          "teal": 327,
+          "source": "contracts\\CTC.algo.ts:102",
+          "pc": [
+            385
+          ]
+        },
+        {
+          "teal": 328,
+          "source": "contracts\\CTC.algo.ts:102",
+          "pc": [
+            386
+          ]
+        },
+        {
+          "teal": 335,
+          "source": "contracts\\CTC.algo.ts:102",
+          "pc": [
+            387,
+            388,
+            389
+          ]
+        },
+        {
+          "teal": 339,
+          "source": "contracts\\CTC.algo.ts:103",
+          "pc": [
+            390
+          ]
+        },
+        {
+          "teal": 340,
+          "source": "contracts\\CTC.algo.ts:103",
+          "pc": [
+            391
+          ]
+        },
+        {
+          "teal": 341,
+          "source": "contracts\\CTC.algo.ts:102",
+          "pc": [
+            392
+          ]
+        },
+        {
+          "teal": 346,
+          "source": "contracts\\CTC.algo.ts:110",
+          "pc": [
+            393
+          ]
+        },
+        {
+          "teal": 349,
+          "source": "contracts\\CTC.algo.ts:110",
+          "pc": [
+            394,
+            395,
+            396
+          ]
+        },
+        {
+          "teal": 350,
+          "source": "contracts\\CTC.algo.ts:110",
+          "pc": [
+            397
+          ]
+        },
+        {
+          "teal": 351,
+          "source": "contracts\\CTC.algo.ts:110",
+          "pc": [
+            398
+          ]
+        },
+        {
+          "teal": 352,
+          "source": "contracts\\CTC.algo.ts:110",
+          "pc": [
+            399
+          ]
+        },
+        {
+          "teal": 353,
+          "source": "contracts\\CTC.algo.ts:110",
+          "pc": [
+            400
+          ]
+        },
+        {
+          "teal": 354,
+          "source": "contracts\\CTC.algo.ts:110",
+          "pc": [
+            401
+          ]
+        },
+        {
+          "teal": 361,
+          "source": "contracts\\CTC.algo.ts:110",
+          "pc": [
+            402,
+            403,
+            404
+          ]
+        },
+        {
+          "teal": 365,
+          "source": "contracts\\CTC.algo.ts:111",
+          "pc": [
+            405
+          ]
+        },
+        {
+          "teal": 366,
+          "source": "contracts\\CTC.algo.ts:111",
+          "pc": [
+            406
+          ]
+        },
+        {
+          "teal": 367,
+          "source": "contracts\\CTC.algo.ts:110",
+          "pc": [
+            407
+          ]
+        },
+        {
+          "teal": 372,
+          "source": "contracts\\CTC.algo.ts:118",
+          "pc": [
+            408
+          ]
+        },
+        {
+          "teal": 375,
+          "source": "contracts\\CTC.algo.ts:118",
+          "pc": [
+            409,
+            410,
+            411
+          ]
+        },
+        {
+          "teal": 376,
+          "source": "contracts\\CTC.algo.ts:118",
+          "pc": [
+            412
+          ]
+        },
+        {
+          "teal": 377,
+          "source": "contracts\\CTC.algo.ts:118",
+          "pc": [
+            413
+          ]
+        },
+        {
+          "teal": 378,
+          "source": "contracts\\CTC.algo.ts:118",
+          "pc": [
+            414
+          ]
+        },
+        {
+          "teal": 379,
+          "source": "contracts\\CTC.algo.ts:118",
+          "pc": [
+            415
+          ]
+        },
+        {
+          "teal": 380,
+          "source": "contracts\\CTC.algo.ts:118",
+          "pc": [
+            416
+          ]
+        },
+        {
+          "teal": 387,
+          "source": "contracts\\CTC.algo.ts:118",
+          "pc": [
+            417,
+            418,
+            419
+          ]
+        },
+        {
+          "teal": 391,
+          "source": "contracts\\CTC.algo.ts:119",
+          "pc": [
+            420,
+            421
+          ]
+        },
+        {
+          "teal": 392,
+          "source": "contracts\\CTC.algo.ts:119",
+          "pc": [
+            422
+          ]
+        },
+        {
+          "teal": 393,
+          "source": "contracts\\CTC.algo.ts:118",
+          "pc": [
+            423
+          ]
+        },
+        {
+          "teal": 398,
+          "source": "contracts\\CTC.algo.ts:126",
+          "pc": [
+            424
+          ]
+        },
+        {
+          "teal": 401,
+          "source": "contracts\\CTC.algo.ts:126",
+          "pc": [
+            425,
+            426,
+            427
+          ]
+        },
+        {
+          "teal": 402,
+          "source": "contracts\\CTC.algo.ts:126",
+          "pc": [
+            428
+          ]
+        },
+        {
+          "teal": 403,
+          "source": "contracts\\CTC.algo.ts:126",
+          "pc": [
+            429
+          ]
+        },
+        {
+          "teal": 404,
+          "source": "contracts\\CTC.algo.ts:126",
+          "pc": [
+            430
+          ]
+        },
+        {
+          "teal": 405,
+          "source": "contracts\\CTC.algo.ts:126",
+          "pc": [
+            431
+          ]
+        },
+        {
+          "teal": 406,
+          "source": "contracts\\CTC.algo.ts:126",
+          "pc": [
+            432
+          ]
+        },
+        {
+          "teal": 413,
+          "source": "contracts\\CTC.algo.ts:126",
+          "pc": [
+            433,
+            434,
+            435
+          ]
+        },
+        {
+          "teal": 417,
+          "source": "contracts\\CTC.algo.ts:127",
+          "pc": [
+            436
+          ]
+        },
+        {
+          "teal": 418,
+          "source": "contracts\\CTC.algo.ts:127",
+          "pc": [
+            437
+          ]
+        },
+        {
+          "teal": 419,
+          "source": "contracts\\CTC.algo.ts:126",
+          "pc": [
+            438
+          ]
+        },
+        {
+          "teal": 424,
+          "source": "contracts\\CTC.algo.ts:134",
+          "pc": [
+            439
+          ]
+        },
+        {
+          "teal": 427,
+          "source": "contracts\\CTC.algo.ts:134",
+          "pc": [
+            440,
+            441,
+            442
+          ]
+        },
+        {
+          "teal": 428,
+          "source": "contracts\\CTC.algo.ts:134",
+          "pc": [
+            443
+          ]
+        },
+        {
+          "teal": 429,
+          "source": "contracts\\CTC.algo.ts:134",
+          "pc": [
+            444
+          ]
+        },
+        {
+          "teal": 430,
+          "source": "contracts\\CTC.algo.ts:134",
+          "pc": [
+            445
+          ]
+        },
+        {
+          "teal": 431,
+          "source": "contracts\\CTC.algo.ts:134",
+          "pc": [
+            446
+          ]
+        },
+        {
+          "teal": 432,
+          "source": "contracts\\CTC.algo.ts:134",
+          "pc": [
+            447
+          ]
+        },
+        {
+          "teal": 439,
+          "source": "contracts\\CTC.algo.ts:134",
+          "pc": [
+            448,
+            449,
+            450
+          ]
+        },
+        {
+          "teal": 443,
+          "source": "contracts\\CTC.algo.ts:135",
+          "pc": [
+            451,
+            452
+          ]
+        },
+        {
+          "teal": 444,
+          "source": "contracts\\CTC.algo.ts:135",
+          "pc": [
+            453
+          ]
+        },
+        {
+          "teal": 445,
+          "source": "contracts\\CTC.algo.ts:134",
+          "pc": [
+            454
+          ]
+        },
+        {
+          "teal": 450,
+          "source": "contracts\\CTC.algo.ts:142",
+          "pc": [
+            455,
+            456
+          ]
+        },
+        {
+          "teal": 451,
+          "source": "contracts\\CTC.algo.ts:142",
+          "pc": [
+            457
+          ]
+        },
+        {
+          "teal": 452,
+          "source": "contracts\\CTC.algo.ts:142",
+          "pc": [
+            458
+          ]
+        },
+        {
+          "teal": 453,
+          "source": "contracts\\CTC.algo.ts:142",
+          "pc": [
+            459
+          ]
+        },
+        {
+          "teal": 454,
+          "source": "contracts\\CTC.algo.ts:142",
+          "pc": [
+            460,
+            461
+          ]
+        },
+        {
+          "teal": 455,
+          "source": "contracts\\CTC.algo.ts:142",
+          "pc": [
+            462
+          ]
+        },
+        {
+          "teal": 456,
+          "source": "contracts\\CTC.algo.ts:142",
+          "pc": [
+            463
+          ]
+        },
+        {
+          "teal": 459,
+          "source": "contracts\\CTC.algo.ts:142",
+          "errorMessage": "argument 0 (payment) for buyAsset must be a pay transaction",
+          "pc": [
+            464
+          ]
+        },
+        {
+          "teal": 462,
+          "source": "contracts\\CTC.algo.ts:142",
+          "pc": [
+            465,
+            466,
+            467
+          ]
+        },
+        {
+          "teal": 463,
+          "source": "contracts\\CTC.algo.ts:142",
+          "pc": [
+            468
+          ]
+        },
+        {
+          "teal": 464,
+          "source": "contracts\\CTC.algo.ts:142",
+          "pc": [
+            469
+          ]
+        },
+        {
+          "teal": 471,
+          "source": "contracts\\CTC.algo.ts:142",
+          "pc": [
+            470,
+            471,
+            472
+          ]
+        },
+        {
+          "teal": 476,
+          "source": "contracts\\CTC.algo.ts:144",
+          "pc": [
+            473,
+            474
+          ]
+        },
+        {
+          "teal": 477,
+          "source": "contracts\\CTC.algo.ts:144",
+          "pc": [
+            475,
+            476
+          ]
+        },
+        {
+          "teal": 478,
+          "source": "contracts\\CTC.algo.ts:144",
+          "pc": [
+            477
+          ]
+        },
+        {
+          "teal": 479,
+          "source": "contracts\\CTC.algo.ts:144",
+          "pc": [
+            478
+          ]
+        },
+        {
+          "teal": 482,
+          "source": "contracts\\CTC.algo.ts:144",
+          "errorMessage": "Sell period ended",
+          "pc": [
+            479
+          ]
+        },
+        {
+          "teal": 487,
+          "source": "contracts\\CTC.algo.ts:147",
+          "pc": [
+            480,
+            481
+          ]
+        },
+        {
+          "teal": 488,
+          "source": "contracts\\CTC.algo.ts:147",
+          "pc": [
+            482
+          ]
+        },
+        {
+          "teal": 489,
+          "source": "contracts\\CTC.algo.ts:147",
+          "pc": [
+            483
+          ]
+        },
+        {
+          "teal": 490,
+          "source": "contracts\\CTC.algo.ts:147",
+          "pc": [
+            484,
+            485
+          ]
+        },
+        {
+          "teal": 491,
+          "source": "contracts\\CTC.algo.ts:147",
+          "pc": [
+            486
+          ]
+        },
+        {
+          "teal": 492,
+          "source": "contracts\\CTC.algo.ts:147",
+          "pc": [
+            487
+          ]
+        },
+        {
+          "teal": 493,
+          "source": "contracts\\CTC.algo.ts:147",
+          "pc": [
+            488
+          ]
+        },
+        {
+          "teal": 496,
+          "source": "contracts\\CTC.algo.ts:147",
+          "errorMessage": "Asset already bought",
+          "pc": [
+            489
+          ]
+        },
+        {
+          "teal": 506,
+          "source": "contracts\\CTC.algo.ts:150",
+          "pc": [
+            490,
+            491
+          ]
+        },
+        {
+          "teal": 507,
+          "source": "contracts\\CTC.algo.ts:151",
+          "pc": [
+            492,
+            493
+          ]
+        },
+        {
+          "teal": 508,
+          "source": "contracts\\CTC.algo.ts:151",
+          "pc": [
+            494,
+            495
+          ]
+        },
+        {
+          "teal": 509,
+          "source": "contracts\\CTC.algo.ts:151",
+          "pc": [
+            496
+          ]
+        },
+        {
+          "teal": 512,
+          "source": "contracts\\CTC.algo.ts:151",
+          "errorMessage": "transaction verification failed: {\"txn\":\"payment\",\"field\":\"sender\",\"expected\":\"this.txn.sender\"}",
+          "pc": [
+            497
+          ]
+        },
+        {
+          "teal": 515,
+          "source": "contracts\\CTC.algo.ts:150",
+          "pc": [
+            498,
+            499
+          ]
+        },
+        {
+          "teal": 516,
+          "source": "contracts\\CTC.algo.ts:152",
+          "pc": [
+            500,
+            501
+          ]
+        },
+        {
+          "teal": 517,
+          "source": "contracts\\CTC.algo.ts:152",
+          "pc": [
+            502,
+            503
+          ]
+        },
+        {
+          "teal": 518,
+          "source": "contracts\\CTC.algo.ts:152",
+          "pc": [
+            504
+          ]
+        },
+        {
+          "teal": 521,
+          "source": "contracts\\CTC.algo.ts:152",
+          "errorMessage": "transaction verification failed: {\"txn\":\"payment\",\"field\":\"receiver\",\"expected\":\"globals.currentApplicationAddress\"}",
+          "pc": [
+            505
+          ]
+        },
+        {
+          "teal": 524,
+          "source": "contracts\\CTC.algo.ts:150",
+          "pc": [
+            506,
+            507
+          ]
+        },
+        {
+          "teal": 525,
+          "source": "contracts\\CTC.algo.ts:153",
+          "pc": [
+            508,
+            509
+          ]
+        },
+        {
+          "teal": 526,
+          "source": "contracts\\CTC.algo.ts:153",
+          "pc": [
+            510,
+            511
+          ]
+        },
+        {
+          "teal": 527,
+          "source": "contracts\\CTC.algo.ts:153",
+          "pc": [
+            512
+          ]
+        },
+        {
+          "teal": 528,
+          "source": "contracts\\CTC.algo.ts:153",
+          "pc": [
+            513
+          ]
+        },
+        {
+          "teal": 531,
+          "source": "contracts\\CTC.algo.ts:153",
+          "errorMessage": "transaction verification failed: {\"txn\":\"payment\",\"field\":\"amount\",\"condition\":\"greaterThanEqualTo\",\"expected\":\">=this.assetPrice.value\"}",
+          "pc": [
+            514
+          ]
+        },
+        {
+          "teal": 532,
+          "source": "contracts\\CTC.algo.ts:150",
+          "pc": [
+            515,
+            516
+          ]
+        },
+        {
+          "teal": 533,
+          "source": "contracts\\CTC.algo.ts:153",
+          "pc": [
+            517,
+            518
+          ]
+        },
+        {
+          "teal": 534,
+          "source": "contracts\\CTC.algo.ts:153",
+          "pc": [
+            519,
+            520
+          ]
+        },
+        {
+          "teal": 535,
+          "source": "contracts\\CTC.algo.ts:153",
+          "pc": [
+            521
+          ]
+        },
+        {
+          "teal": 536,
+          "source": "contracts\\CTC.algo.ts:153",
+          "pc": [
+            522
+          ]
+        },
+        {
+          "teal": 539,
+          "source": "contracts\\CTC.algo.ts:153",
+          "errorMessage": "transaction verification failed: {\"txn\":\"payment\",\"field\":\"amount\",\"condition\":\"lessThanEqualTo\",\"expected\":\"<=this.assetPrice.value\"}",
+          "pc": [
+            523
+          ]
+        },
+        {
+          "teal": 544,
+          "source": "contracts\\CTC.algo.ts:157",
+          "pc": [
+            524
+          ]
+        },
+        {
+          "teal": 545,
+          "source": "contracts\\CTC.algo.ts:157",
+          "pc": [
+            525
+          ]
+        },
+        {
+          "teal": 546,
+          "source": "contracts\\CTC.algo.ts:157",
+          "pc": [
+            526
+          ]
+        },
+        {
+          "teal": 547,
+          "source": "contracts\\CTC.algo.ts:157",
+          "pc": [
+            527
+          ]
+        },
+        {
+          "teal": 550,
+          "source": "contracts\\CTC.algo.ts:157",
+          "errorMessage": "No more ASA to sell",
+          "pc": [
+            528
+          ]
+        },
+        {
+          "teal": 559,
+          "source": "contracts\\CTC.algo.ts:160",
+          "pc": [
+            529
+          ]
+        },
+        {
+          "teal": 560,
+          "source": "contracts\\CTC.algo.ts:160",
+          "pc": [
+            530
+          ]
+        },
+        {
+          "teal": 561,
+          "source": "contracts\\CTC.algo.ts:160",
+          "pc": [
+            531,
+            532
+          ]
+        },
+        {
+          "teal": 565,
+          "source": "contracts\\CTC.algo.ts:161",
+          "pc": [
+            533
+          ]
+        },
+        {
+          "teal": 566,
+          "source": "contracts\\CTC.algo.ts:161",
+          "pc": [
+            534
+          ]
+        },
+        {
+          "teal": 567,
+          "source": "contracts\\CTC.algo.ts:161",
+          "pc": [
+            535,
+            536
+          ]
+        },
+        {
+          "teal": 571,
+          "source": "contracts\\CTC.algo.ts:162",
+          "pc": [
+            537
+          ]
+        },
+        {
+          "teal": 572,
+          "source": "contracts\\CTC.algo.ts:162",
+          "pc": [
+            538,
+            539
+          ]
+        },
+        {
+          "teal": 576,
+          "source": "contracts\\CTC.algo.ts:163",
+          "pc": [
+            540,
+            541
+          ]
+        },
+        {
+          "teal": 577,
+          "source": "contracts\\CTC.algo.ts:163",
+          "pc": [
+            542,
+            543
+          ]
+        },
+        {
+          "teal": 580,
+          "source": "contracts\\CTC.algo.ts:160",
+          "pc": [
+            544
+          ]
+        },
+        {
+          "teal": 581,
+          "source": "contracts\\CTC.algo.ts:160",
+          "pc": [
+            545,
+            546
+          ]
+        },
+        {
+          "teal": 584,
+          "source": "contracts\\CTC.algo.ts:160",
+          "pc": [
+            547
+          ]
+        },
+        {
+          "teal": 593,
+          "source": "contracts\\CTC.algo.ts:167",
+          "pc": [
+            548
+          ]
+        },
+        {
+          "teal": 594,
+          "source": "contracts\\CTC.algo.ts:167",
+          "pc": [
+            549,
+            550
+          ]
+        },
+        {
+          "teal": 595,
+          "source": "contracts\\CTC.algo.ts:167",
+          "pc": [
+            551,
+            552
+          ]
+        },
+        {
+          "teal": 599,
+          "source": "contracts\\CTC.algo.ts:168",
+          "pc": [
+            553
+          ]
+        },
+        {
+          "teal": 600,
+          "source": "contracts\\CTC.algo.ts:168",
+          "pc": [
+            554
+          ]
+        },
+        {
+          "teal": 601,
+          "source": "contracts\\CTC.algo.ts:168",
+          "pc": [
+            555,
+            556
+          ]
+        },
+        {
+          "teal": 605,
+          "source": "contracts\\CTC.algo.ts:169",
+          "pc": [
+            557,
+            558
+          ]
+        },
+        {
+          "teal": 606,
+          "source": "contracts\\CTC.algo.ts:169",
+          "pc": [
+            559,
+            560
+          ]
+        },
+        {
+          "teal": 610,
+          "source": "contracts\\CTC.algo.ts:170",
+          "pc": [
+            561
+          ]
+        },
+        {
+          "teal": 611,
+          "source": "contracts\\CTC.algo.ts:170",
+          "pc": [
+            562,
+            563
+          ]
+        },
+        {
+          "teal": 614,
+          "source": "contracts\\CTC.algo.ts:167",
+          "pc": [
+            564
+          ]
+        },
+        {
+          "teal": 615,
+          "source": "contracts\\CTC.algo.ts:167",
+          "pc": [
+            565,
+            566
+          ]
+        },
+        {
+          "teal": 618,
+          "source": "contracts\\CTC.algo.ts:167",
+          "pc": [
+            567
+          ]
+        },
+        {
+          "teal": 627,
+          "source": "contracts\\CTC.algo.ts:174",
+          "pc": [
+            568
+          ]
+        },
+        {
+          "teal": 628,
+          "source": "contracts\\CTC.algo.ts:174",
+          "pc": [
+            569
+          ]
+        },
+        {
+          "teal": 629,
+          "source": "contracts\\CTC.algo.ts:174",
+          "pc": [
+            570,
+            571
+          ]
+        },
+        {
+          "teal": 633,
+          "source": "contracts\\CTC.algo.ts:175",
+          "pc": [
+            572
+          ]
+        },
+        {
+          "teal": 634,
+          "source": "contracts\\CTC.algo.ts:175",
+          "pc": [
+            573
+          ]
+        },
+        {
+          "teal": 635,
+          "source": "contracts\\CTC.algo.ts:175",
+          "pc": [
+            574,
+            575
+          ]
+        },
+        {
+          "teal": 639,
+          "source": "contracts\\CTC.algo.ts:176",
+          "pc": [
+            576,
+            577
+          ]
+        },
+        {
+          "teal": 640,
+          "source": "contracts\\CTC.algo.ts:176",
+          "pc": [
+            578,
+            579
+          ]
+        },
+        {
+          "teal": 644,
+          "source": "contracts\\CTC.algo.ts:177",
+          "pc": [
+            580
+          ]
+        },
+        {
+          "teal": 645,
+          "source": "contracts\\CTC.algo.ts:177",
+          "pc": [
+            581,
+            582
+          ]
+        },
+        {
+          "teal": 648,
+          "source": "contracts\\CTC.algo.ts:174",
+          "pc": [
+            583
+          ]
+        },
+        {
+          "teal": 649,
+          "source": "contracts\\CTC.algo.ts:174",
+          "pc": [
+            584,
+            585
+          ]
+        },
+        {
+          "teal": 652,
+          "source": "contracts\\CTC.algo.ts:174",
+          "pc": [
+            586
+          ]
+        },
+        {
+          "teal": 661,
+          "source": "contracts\\CTC.algo.ts:181",
+          "pc": [
+            587
+          ]
+        },
+        {
+          "teal": 662,
+          "source": "contracts\\CTC.algo.ts:181",
+          "pc": [
+            588,
+            589
+          ]
+        },
+        {
+          "teal": 663,
+          "source": "contracts\\CTC.algo.ts:181",
+          "pc": [
+            590,
+            591
+          ]
+        },
+        {
+          "teal": 667,
+          "source": "contracts\\CTC.algo.ts:182",
+          "pc": [
+            592
+          ]
+        },
+        {
+          "teal": 668,
+          "source": "contracts\\CTC.algo.ts:182",
+          "pc": [
+            593
+          ]
+        },
+        {
+          "teal": 669,
+          "source": "contracts\\CTC.algo.ts:182",
+          "pc": [
+            594,
+            595
+          ]
+        },
+        {
+          "teal": 673,
+          "source": "contracts\\CTC.algo.ts:183",
+          "pc": [
+            596,
+            597
+          ]
+        },
+        {
+          "teal": 674,
+          "source": "contracts\\CTC.algo.ts:183",
+          "pc": [
+            598,
+            599
+          ]
+        },
+        {
+          "teal": 678,
+          "source": "contracts\\CTC.algo.ts:184",
+          "pc": [
+            600
+          ]
+        },
+        {
+          "teal": 679,
+          "source": "contracts\\CTC.algo.ts:184",
+          "pc": [
+            601,
+            602
+          ]
+        },
+        {
+          "teal": 682,
+          "source": "contracts\\CTC.algo.ts:181",
+          "pc": [
+            603
+          ]
+        },
+        {
+          "teal": 683,
+          "source": "contracts\\CTC.algo.ts:181",
+          "pc": [
+            604,
+            605
+          ]
+        },
+        {
+          "teal": 686,
+          "source": "contracts\\CTC.algo.ts:181",
+          "pc": [
+            606
+          ]
+        },
+        {
+          "teal": 690,
+          "source": "contracts\\CTC.algo.ts:188",
+          "pc": [
+            607
+          ]
+        },
+        {
+          "teal": 691,
+          "source": "contracts\\CTC.algo.ts:188",
+          "pc": [
+            608
+          ]
+        },
+        {
+          "teal": 692,
+          "source": "contracts\\CTC.algo.ts:188",
+          "pc": [
+            609
+          ]
+        },
+        {
+          "teal": 693,
+          "source": "contracts\\CTC.algo.ts:188",
+          "pc": [
+            610
+          ]
+        },
+        {
+          "teal": 694,
+          "source": "contracts\\CTC.algo.ts:188",
+          "pc": [
+            611
+          ]
+        },
+        {
+          "teal": 695,
+          "source": "contracts\\CTC.algo.ts:188",
+          "pc": [
+            612
+          ]
+        },
+        {
+          "teal": 696,
+          "source": "contracts\\CTC.algo.ts:142",
+          "pc": [
+            613
+          ]
+        },
+        {
+          "teal": 701,
+          "source": "contracts\\CTC.algo.ts:194",
+          "pc": [
+            614,
+            615,
+            616
+          ]
+        },
+        {
+          "teal": 702,
+          "source": "contracts\\CTC.algo.ts:194",
+          "pc": [
+            617
+          ]
+        },
+        {
+          "teal": 703,
+          "source": "contracts\\CTC.algo.ts:194",
+          "pc": [
+            618
+          ]
+        },
+        {
+          "teal": 709,
+          "source": "contracts\\CTC.algo.ts:194",
+          "pc": [
+            619,
+            620,
+            621
+          ]
+        },
+        {
+          "teal": 712,
+          "source": "contracts\\CTC.algo.ts:194",
+          "pc": [
+            622,
+            623
+          ]
+        },
+        {
+          "teal": 718,
+          "source": "contracts\\CTC.algo.ts:196",
+          "pc": [
+            624,
+            625
+          ]
+        },
+        {
+          "teal": 719,
+          "source": "contracts\\CTC.algo.ts:196",
+          "pc": [
+            626,
+            627
+          ]
+        },
+        {
+          "teal": 720,
+          "source": "contracts\\CTC.algo.ts:196",
+          "pc": [
+            628
+          ]
+        },
+        {
+          "teal": 723,
+          "source": "contracts\\CTC.algo.ts:196",
+          "errorMessage": "transaction verification failed: {\"txn\":\"this.txn\",\"field\":\"sender\",\"expected\":\"globals.creatorAddress\"}",
+          "pc": [
+            629
+          ]
+        },
+        {
+          "teal": 728,
+          "source": "contracts\\CTC.algo.ts:200",
+          "pc": [
+            630,
+            631
+          ]
+        },
+        {
+          "teal": 729,
+          "source": "contracts\\CTC.algo.ts:200",
+          "pc": [
+            632,
+            633
+          ]
+        },
+        {
+          "teal": 730,
+          "source": "contracts\\CTC.algo.ts:200",
+          "pc": [
+            634
+          ]
+        },
+        {
+          "teal": 731,
+          "source": "contracts\\CTC.algo.ts:200",
+          "pc": [
+            635,
+            636
+          ]
+        },
+        {
+          "teal": 736,
+          "source": "contracts\\CTC.algo.ts:201",
+          "pc": [
+            637,
+            638
+          ]
+        },
+        {
+          "teal": 737,
+          "source": "contracts\\CTC.algo.ts:201",
+          "pc": [
+            639
+          ]
+        },
+        {
+          "teal": 738,
+          "source": "contracts\\CTC.algo.ts:201",
+          "pc": [
+            640
+          ]
+        },
+        {
+          "teal": 739,
+          "source": "contracts\\CTC.algo.ts:201",
+          "pc": [
+            641,
+            642,
+            643
+          ]
+        },
+        {
+          "teal": 747,
+          "source": "contracts\\CTC.algo.ts:202",
+          "pc": [
+            644
+          ]
+        },
+        {
+          "teal": 748,
+          "source": "contracts\\CTC.algo.ts:202",
+          "pc": [
+            645
+          ]
+        },
+        {
+          "teal": 749,
+          "source": "contracts\\CTC.algo.ts:202",
+          "pc": [
+            646,
+            647
+          ]
+        },
+        {
+          "teal": 753,
+          "source": "contracts\\CTC.algo.ts:203",
+          "pc": [
+            648,
+            649
+          ]
+        },
+        {
+          "teal": 754,
+          "source": "contracts\\CTC.algo.ts:203",
+          "pc": [
+            650,
+            651
+          ]
+        },
+        {
+          "teal": 758,
+          "source": "contracts\\CTC.algo.ts:204",
+          "pc": [
+            652,
+            653
+          ]
+        },
+        {
+          "teal": 759,
+          "source": "contracts\\CTC.algo.ts:204",
+          "pc": [
+            654
+          ]
+        },
+        {
+          "teal": 760,
+          "source": "contracts\\CTC.algo.ts:204",
+          "pc": [
+            655
+          ]
+        },
+        {
+          "teal": 761,
+          "source": "contracts\\CTC.algo.ts:204",
+          "pc": [
+            656,
+            657
+          ]
+        },
+        {
+          "teal": 764,
+          "source": "contracts\\CTC.algo.ts:202",
+          "pc": [
+            658
+          ]
+        },
+        {
+          "teal": 765,
+          "source": "contracts\\CTC.algo.ts:202",
+          "pc": [
+            659,
+            660
+          ]
+        },
+        {
+          "teal": 768,
+          "source": "contracts\\CTC.algo.ts:202",
+          "pc": [
+            661
+          ]
+        },
+        {
+          "teal": 771,
+          "source": "contracts\\CTC.algo.ts:194",
+          "pc": [
+            662
+          ]
+        },
+        {
+          "teal": 776,
+          "source": "contracts\\CTC.algo.ts:213",
+          "pc": [
+            663,
+            664,
+            665
+          ]
+        },
+        {
+          "teal": 777,
+          "source": "contracts\\CTC.algo.ts:213",
+          "pc": [
+            666
+          ]
+        },
+        {
+          "teal": 778,
+          "source": "contracts\\CTC.algo.ts:213",
+          "pc": [
+            667
+          ]
+        },
+        {
+          "teal": 779,
+          "source": "contracts\\CTC.algo.ts:213",
+          "pc": [
+            668,
+            669
+          ]
+        },
+        {
+          "teal": 780,
+          "source": "contracts\\CTC.algo.ts:213",
+          "pc": [
+            670
+          ]
+        },
+        {
+          "teal": 783,
+          "source": "contracts\\CTC.algo.ts:213",
+          "errorMessage": "argument 0 (addr) for clawback must be a address",
+          "pc": [
+            671
+          ]
+        },
+        {
+          "teal": 786,
+          "source": "contracts\\CTC.algo.ts:213",
+          "pc": [
+            672,
+            673,
+            674
+          ]
+        },
+        {
+          "teal": 787,
+          "source": "contracts\\CTC.algo.ts:213",
+          "pc": [
+            675
+          ]
+        },
+        {
+          "teal": 788,
+          "source": "contracts\\CTC.algo.ts:213",
+          "pc": [
+            676
+          ]
+        },
+        {
+          "teal": 795,
+          "source": "contracts\\CTC.algo.ts:213",
+          "pc": [
+            677,
+            678,
+            679
+          ]
+        },
+        {
+          "teal": 801,
+          "source": "contracts\\CTC.algo.ts:215",
+          "pc": [
+            680,
+            681
+          ]
+        },
+        {
+          "teal": 802,
+          "source": "contracts\\CTC.algo.ts:215",
+          "pc": [
+            682,
+            683
+          ]
+        },
+        {
+          "teal": 803,
+          "source": "contracts\\CTC.algo.ts:215",
+          "pc": [
+            684
+          ]
+        },
+        {
+          "teal": 806,
+          "source": "contracts\\CTC.algo.ts:215",
+          "errorMessage": "transaction verification failed: {\"txn\":\"this.txn\",\"field\":\"sender\",\"expected\":\"globals.creatorAddress\"}",
+          "pc": [
+            685
+          ]
+        },
+        {
+          "teal": 816,
+          "source": "contracts\\CTC.algo.ts:218",
+          "pc": [
+            686
+          ]
+        },
+        {
+          "teal": 817,
+          "source": "contracts\\CTC.algo.ts:218",
+          "pc": [
+            687
+          ]
+        },
+        {
+          "teal": 818,
+          "source": "contracts\\CTC.algo.ts:218",
+          "pc": [
+            688,
+            689
+          ]
+        },
+        {
+          "teal": 822,
+          "source": "contracts\\CTC.algo.ts:219",
+          "pc": [
+            690
+          ]
+        },
+        {
+          "teal": 823,
+          "source": "contracts\\CTC.algo.ts:219",
+          "pc": [
+            691
+          ]
+        },
+        {
+          "teal": 824,
+          "source": "contracts\\CTC.algo.ts:219",
+          "pc": [
+            692,
+            693
+          ]
+        },
+        {
+          "teal": 828,
+          "source": "contracts\\CTC.algo.ts:220",
+          "pc": [
+            694
+          ]
+        },
+        {
+          "teal": 829,
+          "source": "contracts\\CTC.algo.ts:220",
+          "pc": [
+            695,
+            696
+          ]
+        },
+        {
+          "teal": 833,
+          "source": "contracts\\CTC.algo.ts:221",
+          "pc": [
+            697,
+            698
+          ]
+        },
+        {
+          "teal": 834,
+          "source": "contracts\\CTC.algo.ts:221",
+          "pc": [
+            699,
+            700
+          ]
+        },
+        {
+          "teal": 838,
+          "source": "contracts\\CTC.algo.ts:222",
+          "pc": [
+            701,
+            702
+          ]
+        },
+        {
+          "teal": 839,
+          "source": "contracts\\CTC.algo.ts:222",
+          "pc": [
+            703,
+            704
+          ]
+        },
+        {
+          "teal": 842,
+          "source": "contracts\\CTC.algo.ts:218",
+          "pc": [
+            705
+          ]
+        },
+        {
+          "teal": 843,
+          "source": "contracts\\CTC.algo.ts:218",
+          "pc": [
+            706,
+            707
+          ]
+        },
+        {
+          "teal": 846,
+          "source": "contracts\\CTC.algo.ts:218",
+          "pc": [
+            708
+          ]
+        },
+        {
+          "teal": 851,
+          "source": "contracts\\CTC.algo.ts:226",
+          "pc": [
+            709
+          ]
+        },
+        {
+          "teal": 852,
+          "source": "contracts\\CTC.algo.ts:226",
+          "pc": [
+            710
+          ]
+        },
+        {
+          "teal": 853,
+          "source": "contracts\\CTC.algo.ts:226",
+          "pc": [
+            711
+          ]
+        },
+        {
+          "teal": 854,
+          "source": "contracts\\CTC.algo.ts:226",
+          "pc": [
+            712
+          ]
+        },
+        {
+          "teal": 855,
+          "source": "contracts\\CTC.algo.ts:226",
+          "pc": [
+            713
+          ]
+        },
+        {
+          "teal": 856,
+          "source": "contracts\\CTC.algo.ts:226",
+          "pc": [
+            714
+          ]
+        },
+        {
+          "teal": 857,
+          "source": "contracts\\CTC.algo.ts:213",
+          "pc": [
+            715
+          ]
+        },
+        {
+          "teal": 862,
+          "source": "contracts\\CTC.algo.ts:234",
+          "pc": [
+            716,
+            717,
+            718
+          ]
+        },
+        {
+          "teal": 863,
+          "source": "contracts\\CTC.algo.ts:234",
+          "pc": [
+            719
+          ]
+        },
+        {
+          "teal": 864,
+          "source": "contracts\\CTC.algo.ts:234",
+          "pc": [
+            720
+          ]
+        },
+        {
+          "teal": 865,
+          "source": "contracts\\CTC.algo.ts:234",
+          "pc": [
+            721,
+            722
+          ]
+        },
+        {
+          "teal": 866,
+          "source": "contracts\\CTC.algo.ts:234",
+          "pc": [
+            723
+          ]
+        },
+        {
+          "teal": 869,
+          "source": "contracts\\CTC.algo.ts:234",
+          "errorMessage": "argument 0 (addr) for clawbackNoIncAmount must be a address",
+          "pc": [
+            724
+          ]
+        },
+        {
+          "teal": 872,
+          "source": "contracts\\CTC.algo.ts:234",
+          "pc": [
+            725,
+            726,
+            727
+          ]
+        },
+        {
+          "teal": 873,
+          "source": "contracts\\CTC.algo.ts:234",
+          "pc": [
+            728
+          ]
+        },
+        {
+          "teal": 874,
+          "source": "contracts\\CTC.algo.ts:234",
+          "pc": [
+            729
+          ]
+        },
+        {
+          "teal": 882,
+          "source": "contracts\\CTC.algo.ts:234",
+          "pc": [
+            730,
+            731,
+            732
+          ]
+        },
+        {
+          "teal": 888,
+          "source": "contracts\\CTC.algo.ts:236",
+          "pc": [
+            733,
+            734
+          ]
+        },
+        {
+          "teal": 889,
+          "source": "contracts\\CTC.algo.ts:236",
+          "pc": [
+            735,
+            736
+          ]
+        },
+        {
+          "teal": 890,
+          "source": "contracts\\CTC.algo.ts:236",
+          "pc": [
+            737
+          ]
+        },
+        {
+          "teal": 893,
+          "source": "contracts\\CTC.algo.ts:236",
+          "errorMessage": "transaction verification failed: {\"txn\":\"this.txn\",\"field\":\"sender\",\"expected\":\"globals.creatorAddress\"}",
+          "pc": [
+            738
+          ]
+        },
+        {
+          "teal": 903,
+          "source": "contracts\\CTC.algo.ts:239",
+          "pc": [
+            739
+          ]
+        },
+        {
+          "teal": 904,
+          "source": "contracts\\CTC.algo.ts:239",
+          "pc": [
+            740
+          ]
+        },
+        {
+          "teal": 905,
+          "source": "contracts\\CTC.algo.ts:239",
+          "pc": [
+            741,
+            742
+          ]
+        },
+        {
+          "teal": 909,
+          "source": "contracts\\CTC.algo.ts:240",
+          "pc": [
+            743
+          ]
+        },
+        {
+          "teal": 910,
+          "source": "contracts\\CTC.algo.ts:240",
+          "pc": [
+            744
+          ]
+        },
+        {
+          "teal": 911,
+          "source": "contracts\\CTC.algo.ts:240",
+          "pc": [
+            745,
+            746
+          ]
+        },
+        {
+          "teal": 915,
+          "source": "contracts\\CTC.algo.ts:241",
+          "pc": [
+            747
+          ]
+        },
+        {
+          "teal": 916,
+          "source": "contracts\\CTC.algo.ts:241",
+          "pc": [
+            748,
+            749
+          ]
+        },
+        {
+          "teal": 920,
+          "source": "contracts\\CTC.algo.ts:242",
+          "pc": [
+            750,
+            751
+          ]
+        },
+        {
+          "teal": 921,
+          "source": "contracts\\CTC.algo.ts:242",
+          "pc": [
+            752,
+            753
+          ]
+        },
+        {
+          "teal": 925,
+          "source": "contracts\\CTC.algo.ts:243",
+          "pc": [
+            754,
+            755
+          ]
+        },
+        {
+          "teal": 926,
+          "source": "contracts\\CTC.algo.ts:243",
+          "pc": [
+            756,
+            757
+          ]
+        },
+        {
+          "teal": 929,
+          "source": "contracts\\CTC.algo.ts:239",
+          "pc": [
+            758
+          ]
+        },
+        {
+          "teal": 930,
+          "source": "contracts\\CTC.algo.ts:239",
+          "pc": [
+            759,
+            760
+          ]
+        },
+        {
+          "teal": 933,
+          "source": "contracts\\CTC.algo.ts:239",
+          "pc": [
+            761
+          ]
+        },
+        {
+          "teal": 934,
+          "source": "contracts\\CTC.algo.ts:234",
+          "pc": [
+            762
+          ]
+        },
+        {
+          "teal": 939,
+          "source": "contracts\\CTC.algo.ts:250",
+          "pc": [
+            763,
+            764,
+            765
+          ]
+        },
+        {
+          "teal": 940,
+          "source": "contracts\\CTC.algo.ts:250",
+          "pc": [
+            766
+          ]
+        },
+        {
+          "teal": 941,
+          "source": "contracts\\CTC.algo.ts:250",
+          "pc": [
+            767
+          ]
+        },
+        {
+          "teal": 947,
+          "source": "contracts\\CTC.algo.ts:250",
+          "pc": [
+            768,
+            769,
+            770
+          ]
+        },
+        {
+          "teal": 953,
+          "source": "contracts\\CTC.algo.ts:252",
+          "pc": [
+            771,
+            772
+          ]
+        },
+        {
+          "teal": 954,
+          "source": "contracts\\CTC.algo.ts:252",
+          "pc": [
+            773,
+            774
+          ]
+        },
+        {
+          "teal": 955,
+          "source": "contracts\\CTC.algo.ts:252",
+          "pc": [
+            775
+          ]
+        },
+        {
+          "teal": 958,
+          "source": "contracts\\CTC.algo.ts:252",
+          "errorMessage": "transaction verification failed: {\"txn\":\"this.txn\",\"field\":\"sender\",\"expected\":\"globals.creatorAddress\"}",
+          "pc": [
+            776
+          ]
+        },
+        {
+          "teal": 965,
+          "source": "contracts\\CTC.algo.ts:256",
+          "pc": [
+            777
+          ]
+        },
+        {
+          "teal": 966,
+          "source": "contracts\\CTC.algo.ts:256",
+          "pc": [
+            778,
+            779
+          ]
+        },
+        {
+          "teal": 967,
+          "source": "contracts\\CTC.algo.ts:256",
+          "pc": [
+            780,
+            781
+          ]
+        },
+        {
+          "teal": 971,
+          "source": "contracts\\CTC.algo.ts:257",
+          "pc": [
+            782
+          ]
+        },
+        {
+          "teal": 972,
+          "source": "contracts\\CTC.algo.ts:257",
+          "pc": [
+            783
+          ]
+        },
+        {
+          "teal": 973,
+          "source": "contracts\\CTC.algo.ts:257",
+          "pc": [
+            784,
+            785
+          ]
+        },
+        {
+          "teal": 976,
+          "source": "contracts\\CTC.algo.ts:256",
+          "pc": [
+            786
+          ]
+        },
+        {
+          "teal": 977,
+          "source": "contracts\\CTC.algo.ts:256",
+          "pc": [
+            787,
+            788
+          ]
+        },
+        {
+          "teal": 980,
+          "source": "contracts\\CTC.algo.ts:256",
+          "pc": [
+            789
+          ]
+        },
+        {
+          "teal": 981,
+          "source": "contracts\\CTC.algo.ts:250",
+          "pc": [
+            790
+          ]
+        },
+        {
+          "teal": 986,
+          "source": "contracts\\CTC.algo.ts:264",
+          "pc": [
+            791,
+            792,
+            793
+          ]
+        },
+        {
+          "teal": 987,
+          "source": "contracts\\CTC.algo.ts:264",
+          "pc": [
+            794
+          ]
+        },
+        {
+          "teal": 988,
+          "source": "contracts\\CTC.algo.ts:264",
+          "pc": [
+            795
+          ]
+        },
+        {
+          "teal": 994,
+          "source": "contracts\\CTC.algo.ts:264",
+          "pc": [
+            796,
+            797,
+            798
+          ]
+        },
+        {
+          "teal": 1000,
+          "source": "contracts\\CTC.algo.ts:266",
+          "pc": [
+            799,
+            800
+          ]
+        },
+        {
+          "teal": 1001,
+          "source": "contracts\\CTC.algo.ts:266",
+          "pc": [
+            801,
+            802
+          ]
+        },
+        {
+          "teal": 1002,
+          "source": "contracts\\CTC.algo.ts:266",
+          "pc": [
+            803
+          ]
+        },
+        {
+          "teal": 1005,
+          "source": "contracts\\CTC.algo.ts:266",
+          "errorMessage": "transaction verification failed: {\"txn\":\"this.txn\",\"field\":\"sender\",\"expected\":\"globals.creatorAddress\"}",
+          "pc": [
+            804
+          ]
+        },
+        {
+          "teal": 1014,
+          "source": "contracts\\CTC.algo.ts:269",
+          "pc": [
+            805
+          ]
+        },
+        {
+          "teal": 1015,
+          "source": "contracts\\CTC.algo.ts:269",
+          "pc": [
+            806
+          ]
+        },
+        {
+          "teal": 1016,
+          "source": "contracts\\CTC.algo.ts:269",
+          "pc": [
+            807,
+            808
+          ]
+        },
+        {
+          "teal": 1020,
+          "source": "contracts\\CTC.algo.ts:270",
+          "pc": [
+            809,
+            810
+          ]
+        },
+        {
+          "teal": 1021,
+          "source": "contracts\\CTC.algo.ts:270",
+          "pc": [
+            811,
+            812
+          ]
+        },
+        {
+          "teal": 1025,
+          "source": "contracts\\CTC.algo.ts:271",
+          "pc": [
+            813
+          ]
+        },
+        {
+          "teal": 1026,
+          "source": "contracts\\CTC.algo.ts:271",
+          "pc": [
+            814,
+            815
+          ]
+        },
+        {
+          "teal": 1030,
+          "source": "contracts\\CTC.algo.ts:272",
+          "pc": [
+            816,
+            817
+          ]
+        },
+        {
+          "teal": 1031,
+          "source": "contracts\\CTC.algo.ts:272",
+          "pc": [
+            818,
+            819
+          ]
+        },
+        {
+          "teal": 1034,
+          "source": "contracts\\CTC.algo.ts:269",
+          "pc": [
+            820
+          ]
+        },
+        {
+          "teal": 1035,
+          "source": "contracts\\CTC.algo.ts:269",
+          "pc": [
+            821,
+            822
+          ]
+        },
+        {
+          "teal": 1038,
+          "source": "contracts\\CTC.algo.ts:269",
+          "pc": [
+            823
+          ]
+        },
+        {
+          "teal": 1039,
+          "source": "contracts\\CTC.algo.ts:264",
+          "pc": [
+            824
+          ]
+        },
+        {
+          "teal": 1042,
+          "source": "contracts\\CTC.algo.ts:14",
+          "pc": [
+            825,
+            826,
+            827,
+            828,
+            829,
+            830
+          ]
+        },
+        {
+          "teal": 1043,
+          "source": "contracts\\CTC.algo.ts:14",
+          "pc": [
+            831,
+            832,
+            833
+          ]
+        },
+        {
+          "teal": 1044,
+          "source": "contracts\\CTC.algo.ts:14",
+          "pc": [
+            834,
+            835,
+            836,
+            837
+          ]
+        },
+        {
+          "teal": 1047,
+          "source": "contracts\\CTC.algo.ts:14",
+          "errorMessage": "this contract does not implement the given ABI method for create NoOp",
+          "pc": [
+            838
+          ]
+        },
+        {
+          "teal": 1050,
+          "source": "contracts\\CTC.algo.ts:14",
+          "pc": [
+            839,
+            840,
+            841,
+            842,
+            843,
+            844
+          ]
+        },
+        {
+          "teal": 1051,
+          "source": "contracts\\CTC.algo.ts:14",
+          "pc": [
+            845,
+            846,
+            847,
+            848,
+            849,
+            850
+          ]
+        },
+        {
+          "teal": 1052,
+          "source": "contracts\\CTC.algo.ts:14",
+          "pc": [
+            851,
+            852,
+            853,
+            854,
+            855,
+            856
+          ]
+        },
+        {
+          "teal": 1053,
+          "source": "contracts\\CTC.algo.ts:14",
+          "pc": [
+            857,
+            858,
+            859,
+            860,
+            861,
+            862
+          ]
+        },
+        {
+          "teal": 1054,
+          "source": "contracts\\CTC.algo.ts:14",
+          "pc": [
+            863,
+            864,
+            865,
+            866,
+            867,
+            868
+          ]
+        },
+        {
+          "teal": 1055,
+          "source": "contracts\\CTC.algo.ts:14",
+          "pc": [
+            869,
+            870,
+            871,
+            872,
+            873,
+            874
+          ]
+        },
+        {
+          "teal": 1056,
+          "source": "contracts\\CTC.algo.ts:14",
+          "pc": [
+            875,
+            876,
+            877,
+            878,
+            879,
+            880
+          ]
+        },
+        {
+          "teal": 1057,
+          "source": "contracts\\CTC.algo.ts:14",
+          "pc": [
+            881,
+            882,
+            883,
+            884,
+            885,
+            886
+          ]
+        },
+        {
+          "teal": 1058,
+          "source": "contracts\\CTC.algo.ts:14",
+          "pc": [
+            887,
+            888,
+            889,
+            890,
+            891,
+            892
+          ]
+        },
+        {
+          "teal": 1059,
+          "source": "contracts\\CTC.algo.ts:14",
+          "pc": [
+            893,
+            894,
+            895,
+            896,
+            897,
+            898
+          ]
+        },
+        {
+          "teal": 1060,
+          "source": "contracts\\CTC.algo.ts:14",
+          "pc": [
+            899,
+            900,
+            901,
+            902,
+            903,
+            904
+          ]
+        },
+        {
+          "teal": 1061,
+          "source": "contracts\\CTC.algo.ts:14",
+          "pc": [
+            905,
+            906,
+            907,
+            908,
+            909,
+            910
+          ]
+        },
+        {
+          "teal": 1062,
+          "source": "contracts\\CTC.algo.ts:14",
+          "pc": [
+            911,
+            912,
+            913,
+            914,
+            915,
+            916
+          ]
+        },
+        {
+          "teal": 1063,
+          "source": "contracts\\CTC.algo.ts:14",
+          "pc": [
+            917,
+            918,
+            919
+          ]
+        },
+        {
+          "teal": 1064,
+          "source": "contracts\\CTC.algo.ts:14",
+          "pc": [
+            920,
+            921,
+            922,
+            923,
+            924,
+            925,
+            926,
+            927,
+            928,
+            929,
+            930,
+            931,
+            932,
+            933,
+            934,
+            935,
+            936,
+            937,
+            938,
+            939,
+            940,
+            941,
+            942,
+            943,
+            944,
+            945,
+            946,
+            947
+          ]
+        },
+        {
+          "teal": 1067,
+          "source": "contracts\\CTC.algo.ts:14",
           "errorMessage": "this contract does not implement the given ABI method for call NoOp",
           "pc": [
-            243
+            948
+          ]
+        },
+        {
+          "teal": 1070,
+          "source": "contracts\\CTC.algo.ts:14",
+          "pc": [
+            949,
+            950,
+            951,
+            952,
+            953,
+            954
+          ]
+        },
+        {
+          "teal": 1071,
+          "source": "contracts\\CTC.algo.ts:14",
+          "pc": [
+            955,
+            956,
+            957
+          ]
+        },
+        {
+          "teal": 1072,
+          "source": "contracts\\CTC.algo.ts:14",
+          "pc": [
+            958,
+            959,
+            960,
+            961
+          ]
+        },
+        {
+          "teal": 1075,
+          "source": "contracts\\CTC.algo.ts:14",
+          "errorMessage": "this contract does not implement the given ABI method for call DeleteApplication",
+          "pc": [
+            962
           ]
         }
       ],
@@ -935,11 +4104,11 @@
     }
   },
   "source": {
-    "approval": "I3ByYWdtYSB2ZXJzaW9uIDEwCmludGNibG9jayAxCmJ5dGVjYmxvY2sgMHgxNTFmN2M3NQoKLy8gVGhpcyBURUFMIHdhcyBnZW5lcmF0ZWQgYnkgVEVBTFNjcmlwdCB2MC4xMDUuMwovLyBodHRwczovL2dpdGh1Yi5jb20vYWxnb3JhbmRmb3VuZGF0aW9uL1RFQUxTY3JpcHQKCi8vIFRoaXMgY29udHJhY3QgaXMgY29tcGxpYW50IHdpdGggYW5kL29yIGltcGxlbWVudHMgdGhlIGZvbGxvd2luZyBBUkNzOiBbIEFSQzQgXQoKLy8gVGhlIGZvbGxvd2luZyB0ZW4gbGluZXMgb2YgVEVBTCBoYW5kbGUgaW5pdGlhbCBwcm9ncmFtIGZsb3cKLy8gVGhpcyBwYXR0ZXJuIGlzIHVzZWQgdG8gbWFrZSBpdCBlYXN5IGZvciBhbnlvbmUgdG8gcGFyc2UgdGhlIHN0YXJ0IG9mIHRoZSBwcm9ncmFtIGFuZCBkZXRlcm1pbmUgaWYgYSBzcGVjaWZpYyBhY3Rpb24gaXMgYWxsb3dlZAovLyBIZXJlLCBhY3Rpb24gcmVmZXJzIHRvIHRoZSBPbkNvbXBsZXRlIGluIGNvbWJpbmF0aW9uIHdpdGggd2hldGhlciB0aGUgYXBwIGlzIGJlaW5nIGNyZWF0ZWQgb3IgY2FsbGVkCi8vIEV2ZXJ5IHBvc3NpYmxlIGFjdGlvbiBmb3IgdGhpcyBjb250cmFjdCBpcyByZXByZXNlbnRlZCBpbiB0aGUgc3dpdGNoIHN0YXRlbWVudAovLyBJZiB0aGUgYWN0aW9uIGlzIG5vdCBpbXBsZW1lbnRlZCBpbiB0aGUgY29udHJhY3QsIGl0cyByZXNwZWN0aXZlIGJyYW5jaCB3aWxsIGJlICIqTk9UX0lNUExFTUVOVEVEIiB3aGljaCBqdXN0IGNvbnRhaW5zICJlcnIiCnR4biBBcHBsaWNhdGlvbklECiEKcHVzaGludCA2CioKdHhuIE9uQ29tcGxldGlvbgorCnN3aXRjaCAqY2FsbF9Ob09wICpOT1RfSU1QTEVNRU5URUQgKk5PVF9JTVBMRU1FTlRFRCAqTk9UX0lNUExFTUVOVEVEICpOT1RfSU1QTEVNRU5URUQgKk5PVF9JTVBMRU1FTlRFRCAqY3JlYXRlX05vT3AgKk5PVF9JTVBMRU1FTlRFRCAqTk9UX0lNUExFTUVOVEVEICpOT1RfSU1QTEVNRU5URUQgKk5PVF9JTVBMRU1FTlRFRCAqTk9UX0lNUExFTUVOVEVECgoqTk9UX0lNUExFTUVOVEVEOgoJLy8gVGhlIHJlcXVlc3RlZCBhY3Rpb24gaXMgbm90IGltcGxlbWVudGVkIGluIHRoaXMgY29udHJhY3QuIEFyZSB5b3UgdXNpbmcgdGhlIGNvcnJlY3QgT25Db21wbGV0ZT8gRGlkIHlvdSBzZXQgeW91ciBhcHAgSUQ/CgllcnIKCi8vIGdldFN1bShhOiB1aW50NjQsIGI6IHVpbnQ2NCk6IHVpbnQ2NAovLwovLyBDYWxjdWxhdGVzIHRoZSBzdW0gb2YgdHdvIG51bWJlcnMKLy8KLy8gQHBhcmFtIGEKLy8gQHBhcmFtIGIKLy8gQHJldHVybnMgVGhlIHN1bSBvZiBhIGFuZCBiCmdldFN1bToKCXByb3RvIDIgMQoKCS8vIGNvbnRyYWN0c1xDVEMuYWxnby50czoxMgoJLy8gcmV0dXJuIGEgKyBiOwoJZnJhbWVfZGlnIC0xIC8vIGE6IHVpbnQ2NAoJZnJhbWVfZGlnIC0yIC8vIGI6IHVpbnQ2NAoJKwoJcmV0c3ViCgovLyBnZXREaWZmZXJlbmNlKGE6IHVpbnQ2NCwgYjogdWludDY0KTogdWludDY0Ci8vCi8vIENhbGN1bGF0ZXMgdGhlIGRpZmZlcmVuY2UgYmV0d2VlbiB0d28gbnVtYmVycwovLwovLyBAcGFyYW0gYQovLyBAcGFyYW0gYgovLyBAcmV0dXJucyBUaGUgZGlmZmVyZW5jZSBiZXR3ZWVuIGEgYW5kIGIuCmdldERpZmZlcmVuY2U6Cglwcm90byAyIDEKCgkvLyBjb250cmFjdHNcQ1RDLmFsZ28udHM6MjMKCS8vIHJldHVybiBhID49IGIgPyBhIC0gYiA6IGIgLSBhOwoJZnJhbWVfZGlnIC0xIC8vIGE6IHVpbnQ2NAoJZnJhbWVfZGlnIC0yIC8vIGI6IHVpbnQ2NAoJPj0KCWJ6ICp0ZXJuYXJ5MF9mYWxzZQoJZnJhbWVfZGlnIC0xIC8vIGE6IHVpbnQ2NAoJZnJhbWVfZGlnIC0yIC8vIGI6IHVpbnQ2NAoJLQoJYiAqdGVybmFyeTBfZW5kCgoqdGVybmFyeTBfZmFsc2U6CglmcmFtZV9kaWcgLTIgLy8gYjogdWludDY0CglmcmFtZV9kaWcgLTEgLy8gYTogdWludDY0CgktCgoqdGVybmFyeTBfZW5kOgoJcmV0c3ViCgovLyBkb01hdGgodWludDY0LHVpbnQ2NCxzdHJpbmcpdWludDY0CiphYmlfcm91dGVfZG9NYXRoOgoJLy8gVGhlIEFCSSByZXR1cm4gcHJlZml4CglieXRlYyAwIC8vIDB4MTUxZjdjNzUKCgkvLyBvcGVyYXRpb246IHN0cmluZwoJdHhuYSBBcHBsaWNhdGlvbkFyZ3MgMwoJZXh0cmFjdCAyIDAKCgkvLyBiOiB1aW50NjQKCXR4bmEgQXBwbGljYXRpb25BcmdzIDIKCWJ0b2kKCgkvLyBhOiB1aW50NjQKCXR4bmEgQXBwbGljYXRpb25BcmdzIDEKCWJ0b2kKCgkvLyBleGVjdXRlIGRvTWF0aCh1aW50NjQsdWludDY0LHN0cmluZyl1aW50NjQKCWNhbGxzdWIgZG9NYXRoCglpdG9iCgljb25jYXQKCWxvZwoJaW50YyAwIC8vIDEKCXJldHVybgoKLy8gZG9NYXRoKGE6IHVpbnQ2NCwgYjogdWludDY0LCBvcGVyYXRpb246IHN0cmluZyk6IHVpbnQ2NAovLwovLyBBIG1ldGhvZCB0aGF0IHRha2VzIHR3byBudW1iZXJzIGFuZCBkb2VzIGVpdGhlciBhZGRpdGlvbiBvciBzdWJ0cmFjdGlvbgovLwovLyBAcGFyYW0gYSBUaGUgZmlyc3QgdWludDY0Ci8vIEBwYXJhbSBiIFRoZSBzZWNvbmQgdWludDY0Ci8vIEBwYXJhbSBvcGVyYXRpb24gVGhlIG9wZXJhdGlvbiB0byBwZXJmb3JtLiBDYW4gYmUgZWl0aGVyICdzdW0nIG9yICdkaWZmZXJlbmNlJwovLwovLyBAcmV0dXJucyBUaGUgcmVzdWx0IG9mIHRoZSBvcGVyYXRpb24KZG9NYXRoOgoJcHJvdG8gMyAxCgoJLy8gUHVzaCBlbXB0eSBieXRlcyBhZnRlciB0aGUgZnJhbWUgcG9pbnRlciB0byByZXNlcnZlIHNwYWNlIGZvciBsb2NhbCB2YXJpYWJsZXMKCXB1c2hieXRlcyAweAoKCS8vICppZjBfY29uZGl0aW9uCgkvLyBjb250cmFjdHNcQ1RDLmFsZ28udHM6MzgKCS8vIG9wZXJhdGlvbiA9PT0gJ3N1bScKCWZyYW1lX2RpZyAtMyAvLyBvcGVyYXRpb246IHN0cmluZwoJcHVzaGJ5dGVzIDB4NzM3NTZkIC8vICJzdW0iCgk9PQoJYnogKmlmMF9lbHNlaWYxX2NvbmRpdGlvbgoKCS8vICppZjBfY29uc2VxdWVudAoJLy8gY29udHJhY3RzXENUQy5hbGdvLnRzOjM5CgkvLyByZXN1bHQgPSB0aGlzLmdldFN1bShhLCBiKQoJZnJhbWVfZGlnIC0yIC8vIGI6IHVpbnQ2NAoJZnJhbWVfZGlnIC0xIC8vIGE6IHVpbnQ2NAoJY2FsbHN1YiBnZXRTdW0KCWZyYW1lX2J1cnkgMCAvLyByZXN1bHQ6IHVpbnQ2NAoJYiAqaWYwX2VuZAoKKmlmMF9lbHNlaWYxX2NvbmRpdGlvbjoKCS8vIGNvbnRyYWN0c1xDVEMuYWxnby50czo0MAoJLy8gb3BlcmF0aW9uID09PSAnZGlmZmVyZW5jZScKCWZyYW1lX2RpZyAtMyAvLyBvcGVyYXRpb246IHN0cmluZwoJcHVzaGJ5dGVzIDB4NjQ2OTY2NjY2NTcyNjU2ZTYzNjUgLy8gImRpZmZlcmVuY2UiCgk9PQoJYnogKmlmMF9lbHNlCgoJLy8gKmlmMF9lbHNlaWYxX2NvbnNlcXVlbnQKCS8vIGNvbnRyYWN0c1xDVEMuYWxnby50czo0MQoJLy8gcmVzdWx0ID0gdGhpcy5nZXREaWZmZXJlbmNlKGEsIGIpCglmcmFtZV9kaWcgLTIgLy8gYjogdWludDY0CglmcmFtZV9kaWcgLTEgLy8gYTogdWludDY0CgljYWxsc3ViIGdldERpZmZlcmVuY2UKCWZyYW1lX2J1cnkgMCAvLyByZXN1bHQ6IHVpbnQ2NAoJYiAqaWYwX2VuZAoKKmlmMF9lbHNlOgoJLy8gSW52YWxpZCBvcGVyYXRpb24KCWVycgoKKmlmMF9lbmQ6CgkvLyBjb250cmFjdHNcQ1RDLmFsZ28udHM6NDQKCS8vIHJldHVybiByZXN1bHQ7CglmcmFtZV9kaWcgMCAvLyByZXN1bHQ6IHVpbnQ2NAoKCS8vIHNldCB0aGUgc3Vicm91dGluZSByZXR1cm4gdmFsdWUKCWZyYW1lX2J1cnkgMAoJcmV0c3ViCgovLyBoZWxsbyhzdHJpbmcpc3RyaW5nCiphYmlfcm91dGVfaGVsbG86CgkvLyBUaGUgQUJJIHJldHVybiBwcmVmaXgKCWJ5dGVjIDAgLy8gMHgxNTFmN2M3NQoKCS8vIG5hbWU6IHN0cmluZwoJdHhuYSBBcHBsaWNhdGlvbkFyZ3MgMQoJZXh0cmFjdCAyIDAKCgkvLyBleGVjdXRlIGhlbGxvKHN0cmluZylzdHJpbmcKCWNhbGxzdWIgaGVsbG8KCWR1cAoJbGVuCglpdG9iCglleHRyYWN0IDYgMgoJc3dhcAoJY29uY2F0Cgljb25jYXQKCWxvZwoJaW50YyAwIC8vIDEKCXJldHVybgoKLy8gaGVsbG8obmFtZTogc3RyaW5nKTogc3RyaW5nCi8vCi8vIEEgZGVtb25zdHJhdGlvbiBtZXRob2QgdXNlZCBpbiB0aGUgQWxnb0tpdCBmdWxsc3RhY2sgdGVtcGxhdGUuCi8vIEdyZWV0cyB0aGUgdXNlciBieSBuYW1lLgovLwovLyBAcGFyYW0gbmFtZSBUaGUgbmFtZSBvZiB0aGUgdXNlciB0byBncmVldC4KLy8gQHJldHVybnMgQSBncmVldGluZyBtZXNzYWdlIHRvIHRoZSB1c2VyLgpoZWxsbzoKCXByb3RvIDEgMQoKCS8vIGNvbnRyYWN0c1xDVEMuYWxnby50czo1NQoJLy8gcmV0dXJuICdIZWxsbywgJyArIG5hbWU7CglwdXNoYnl0ZXMgMHg0ODY1NmM2YzZmMmMyMCAvLyAiSGVsbG8sICIKCWZyYW1lX2RpZyAtMSAvLyBuYW1lOiBzdHJpbmcKCWNvbmNhdAoJcmV0c3ViCgoqYWJpX3JvdXRlX2NyZWF0ZUFwcGxpY2F0aW9uOgoJaW50YyAwIC8vIDEKCXJldHVybgoKKmNyZWF0ZV9Ob09wOgoJcHVzaGJ5dGVzIDB4Yjg0NDdiMzYgLy8gbWV0aG9kICJjcmVhdGVBcHBsaWNhdGlvbigpdm9pZCIKCXR4bmEgQXBwbGljYXRpb25BcmdzIDAKCW1hdGNoICphYmlfcm91dGVfY3JlYXRlQXBwbGljYXRpb24KCgkvLyB0aGlzIGNvbnRyYWN0IGRvZXMgbm90IGltcGxlbWVudCB0aGUgZ2l2ZW4gQUJJIG1ldGhvZCBmb3IgY3JlYXRlIE5vT3AKCWVycgoKKmNhbGxfTm9PcDoKCXB1c2hieXRlcyAweDc2YTdlZjMzIC8vIG1ldGhvZCAiZG9NYXRoKHVpbnQ2NCx1aW50NjQsc3RyaW5nKXVpbnQ2NCIKCXB1c2hieXRlcyAweDAyYmVjZTExIC8vIG1ldGhvZCAiaGVsbG8oc3RyaW5nKXN0cmluZyIKCXR4bmEgQXBwbGljYXRpb25BcmdzIDAKCW1hdGNoICphYmlfcm91dGVfZG9NYXRoICphYmlfcm91dGVfaGVsbG8KCgkvLyB0aGlzIGNvbnRyYWN0IGRvZXMgbm90IGltcGxlbWVudCB0aGUgZ2l2ZW4gQUJJIG1ldGhvZCBmb3IgY2FsbCBOb09wCgllcnI=",
+    "approval": "I3ByYWdtYSB2ZXJzaW9uIDEwCmludGNibG9jayAxIDAgNCA2MDAwMDAgMyA1IDMyCmJ5dGVjYmxvY2sgMHg2MTczNjE1ZjY5NjQgMHg2MTczNjE1ZjYxNmQ3NCAweDE1MWY3Yzc1IDB4NjE3MzYxNWY3NDZmNzQ2MTZjIDB4NjE3MzYxNWY3MDcyNjk2MzY1IDB4NjU2ZTY0IDB4NjE3MzYxNWY3NiAweDYxNzA2MzYxIDB4NjE3MDc2IDB4CgovLyBUaGlzIFRFQUwgd2FzIGdlbmVyYXRlZCBieSBURUFMU2NyaXB0IHYwLjEwNS4zCi8vIGh0dHBzOi8vZ2l0aHViLmNvbS9hbGdvcmFuZGZvdW5kYXRpb24vVEVBTFNjcmlwdAoKLy8gVGhpcyBjb250cmFjdCBpcyBjb21wbGlhbnQgd2l0aCBhbmQvb3IgaW1wbGVtZW50cyB0aGUgZm9sbG93aW5nIEFSQ3M6IFsgQVJDNCBdCgovLyBUaGUgZm9sbG93aW5nIHRlbiBsaW5lcyBvZiBURUFMIGhhbmRsZSBpbml0aWFsIHByb2dyYW0gZmxvdwovLyBUaGlzIHBhdHRlcm4gaXMgdXNlZCB0byBtYWtlIGl0IGVhc3kgZm9yIGFueW9uZSB0byBwYXJzZSB0aGUgc3RhcnQgb2YgdGhlIHByb2dyYW0gYW5kIGRldGVybWluZSBpZiBhIHNwZWNpZmljIGFjdGlvbiBpcyBhbGxvd2VkCi8vIEhlcmUsIGFjdGlvbiByZWZlcnMgdG8gdGhlIE9uQ29tcGxldGUgaW4gY29tYmluYXRpb24gd2l0aCB3aGV0aGVyIHRoZSBhcHAgaXMgYmVpbmcgY3JlYXRlZCBvciBjYWxsZWQKLy8gRXZlcnkgcG9zc2libGUgYWN0aW9uIGZvciB0aGlzIGNvbnRyYWN0IGlzIHJlcHJlc2VudGVkIGluIHRoZSBzd2l0Y2ggc3RhdGVtZW50Ci8vIElmIHRoZSBhY3Rpb24gaXMgbm90IGltcGxlbWVudGVkIGluIHRoZSBjb250cmFjdCwgaXRzIHJlc3BlY3RpdmUgYnJhbmNoIHdpbGwgYmUgIipOT1RfSU1QTEVNRU5URUQiIHdoaWNoIGp1c3QgY29udGFpbnMgImVyciIKdHhuIEFwcGxpY2F0aW9uSUQKIQpwdXNoaW50IDYKKgp0eG4gT25Db21wbGV0aW9uCisKc3dpdGNoICpjYWxsX05vT3AgKk5PVF9JTVBMRU1FTlRFRCAqTk9UX0lNUExFTUVOVEVEICpOT1RfSU1QTEVNRU5URUQgKk5PVF9JTVBMRU1FTlRFRCAqY2FsbF9EZWxldGVBcHBsaWNhdGlvbiAqY3JlYXRlX05vT3AgKk5PVF9JTVBMRU1FTlRFRCAqTk9UX0lNUExFTUVOVEVEICpOT1RfSU1QTEVNRU5URUQgKk5PVF9JTVBMRU1FTlRFRCAqTk9UX0lNUExFTUVOVEVECgoqTk9UX0lNUExFTUVOVEVEOgoJLy8gVGhlIHJlcXVlc3RlZCBhY3Rpb24gaXMgbm90IGltcGxlbWVudGVkIGluIHRoaXMgY29udHJhY3QuIEFyZSB5b3UgdXNpbmcgdGhlIGNvcnJlY3QgT25Db21wbGV0ZT8gRGlkIHlvdSBzZXQgeW91ciBhcHAgSUQ/CgllcnIKCi8vIGNyZWF0ZUFwcGxpY2F0aW9uKCl2b2lkCiphYmlfcm91dGVfY3JlYXRlQXBwbGljYXRpb246CgkvLyBleGVjdXRlIGNyZWF0ZUFwcGxpY2F0aW9uKCl2b2lkCgljYWxsc3ViIGNyZWF0ZUFwcGxpY2F0aW9uCglpbnRjIDAgLy8gMQoJcmV0dXJuCgovLyBjcmVhdGVBcHBsaWNhdGlvbigpOiB2b2lkCi8vCi8vIEluaXQgdGhlIHZhbHVlcyBvZiBnbG9iYWwga2V5cwpjcmVhdGVBcHBsaWNhdGlvbjoKCXByb3RvIDAgMAoKCS8vIGNvbnRyYWN0c1xDVEMuYWxnby50czozNQoJLy8gdGhpcy5hcHBWZXJzaW9uLnZhbHVlID0gJ3YxLjAnCglieXRlYyA4IC8vICAiYXB2IgoJcHVzaGJ5dGVzIDB4MDAwNDc2MzEyZTMwCglhcHBfZ2xvYmFsX3B1dAoKCS8vIGNvbnRyYWN0c1xDVEMuYWxnby50czozNgoJLy8gdGhpcy5hcHBDcmVhdG9yQWRkcmVzcy52YWx1ZSA9IGdsb2JhbHMuY3JlYXRvckFkZHJlc3MKCWJ5dGVjIDcgLy8gICJhcGNhIgoJZ2xvYmFsIENyZWF0b3JBZGRyZXNzCglhcHBfZ2xvYmFsX3B1dAoKCS8vIGNvbnRyYWN0c1xDVEMuYWxnby50czozNwoJLy8gdGhpcy5hc3NldEFtb3VudEluaXRpYWwudmFsdWUgPSAwCglieXRlYyAzIC8vICAiYXNhX3RvdGFsIgoJaW50YyAxIC8vIDAKCWFwcF9nbG9iYWxfcHV0CgoJLy8gY29udHJhY3RzXENUQy5hbGdvLnRzOjM4CgkvLyB0aGlzLmFzc2V0QW1vdW50LnZhbHVlID0gMAoJYnl0ZWMgMSAvLyAgImFzYV9hbXQiCglpbnRjIDEgLy8gMAoJYXBwX2dsb2JhbF9wdXQKCgkvLyBjb250cmFjdHNcQ1RDLmFsZ28udHM6MzkKCS8vIHRoaXMuYXNzZXRQcmljZS52YWx1ZSA9IDAKCWJ5dGVjIDQgLy8gICJhc2FfcHJpY2UiCglpbnRjIDEgLy8gMAoJYXBwX2dsb2JhbF9wdXQKCgkvLyBjb250cmFjdHNcQ1RDLmFsZ28udHM6NDAKCS8vIHRoaXMuYXNzZXQudmFsdWUgPSBBc3NldElELnplcm9JbmRleAoJYnl0ZWMgMCAvLyAgImFzYV9pZCIKCWludGMgMSAvLyAwCglhcHBfZ2xvYmFsX3B1dAoKCS8vIGNvbnRyYWN0c1xDVEMuYWxnby50czo0MQoJLy8gdGhpcy5zZWxsUGVyaW9kRW5kLnZhbHVlID0gMAoJYnl0ZWMgNSAvLyAgImVuZCIKCWludGMgMSAvLyAwCglhcHBfZ2xvYmFsX3B1dAoKCS8vIGNvbnRyYWN0c1xDVEMuYWxnby50czo0MgoJLy8gdGhpcy5hc3NldFZhbGlkaXR5UGVyaW9kLnZhbHVlID0gMAoJYnl0ZWMgNiAvLyAgImFzYV92IgoJaW50YyAxIC8vIDAKCWFwcF9nbG9iYWxfcHV0CglyZXRzdWIKCi8vIGJvb3RzdHJhcCh1aW50NjQsdWludDY0LHVpbnQ2NCx1aW50NjQpdm9pZAoqYWJpX3JvdXRlX2Jvb3RzdHJhcDoKCS8vIGFzc2V0VmFsaWRpdHlQZXJpb2Q6IHVpbnQ2NAoJdHhuYSBBcHBsaWNhdGlvbkFyZ3MgNAoJYnRvaQoKCS8vIHNlbGxQZXJpb2RMZW5ndGg6IHVpbnQ2NAoJdHhuYSBBcHBsaWNhdGlvbkFyZ3MgMwoJYnRvaQoKCS8vIGFzc2V0QW1vdW50OiB1aW50NjQKCXR4bmEgQXBwbGljYXRpb25BcmdzIDIKCWJ0b2kKCgkvLyBhc3NldFByaWNlOiB1aW50NjQKCXR4bmEgQXBwbGljYXRpb25BcmdzIDEKCWJ0b2kKCgkvLyBleGVjdXRlIGJvb3RzdHJhcCh1aW50NjQsdWludDY0LHVpbnQ2NCx1aW50NjQpdm9pZAoJY2FsbHN1YiBib290c3RyYXAKCWludGMgMCAvLyAxCglyZXR1cm4KCi8vIGJvb3RzdHJhcChhc3NldFByaWNlOiB1aW50NjQsIGFzc2V0QW1vdW50OiB1aW50NjQsIHNlbGxQZXJpb2RMZW5ndGg6IHVpbnQ2NCwgYXNzZXRWYWxpZGl0eVBlcmlvZDogdWludDY0KTogdm9pZAovLwovLyBjcmVhdGUgQVNBLCBzZXQgZ2xvYmFsIGtleSB2YWx1ZXMKLy8gQHBhcmFtIGFzc2V0UHJpY2UgQVNBIHByaWNlIGluIG1pY3JvQWxnb3MKLy8gQHBhcmFtIGFzc2V0QW1vdW50IEFTQSBpbml0YWwgYW1vdW50IGluIHBpZWNlcwovLyBAcGFyYW0gc2VsbFBlcmlvZExlbmd0aCBzZWxsIHBlcmlvZCBsZW5ndGggaW4gc2VjcwovLyBAcGFyYW0gYXNzZXRWYWxpZGl0eVBlcmlvZCBhc3NldCB2YWxpZGl0eSBpbiBzZWNzLCBhZnRlciB0aGF0IHRpbWUgaXQgY2FuIGJlIGNsYXdiYWNrZWQKYm9vdHN0cmFwOgoJcHJvdG8gNCAwCgoJLy8gUHVzaCBlbXB0eSBieXRlcyBhZnRlciB0aGUgZnJhbWUgcG9pbnRlciB0byByZXNlcnZlIHNwYWNlIGZvciBsb2NhbCB2YXJpYWJsZXMKCWJ5dGVjIDkgLy8gMHgKCgkvLyBhbGxvdyBvbmx5IHRoZSBhcHAgY3JlYXRvciB0byBjYWxsIHRoaXMgbWV0aG9kCgkvLyBjb250cmFjdHNcQ1RDLmFsZ28udHM6NTQKCS8vIHZlcmlmeUFwcENhbGxUeG4odGhpcy50eG4sIHsgc2VuZGVyOiBnbG9iYWxzLmNyZWF0b3JBZGRyZXNzIH0pCgkvLyB2ZXJpZnkgc2VuZGVyCgl0eG4gU2VuZGVyCglnbG9iYWwgQ3JlYXRvckFkZHJlc3MKCT09CgoJLy8gdHJhbnNhY3Rpb24gdmVyaWZpY2F0aW9uIGZhaWxlZDogeyJ0eG4iOiJ0aGlzLnR4biIsImZpZWxkIjoic2VuZGVyIiwiZXhwZWN0ZWQiOiJnbG9iYWxzLmNyZWF0b3JBZGRyZXNzIn0KCWFzc2VydAoKCS8vIGFzc2VydCBib290c3RyYXAgaGFzbid0IGJlZW4gY2FsbGVkIHlldAoJLy8gY29udHJhY3RzXENUQy5hbGdvLnRzOjU3CgkvLyBhc3NlcnQodGhpcy5hc3NldEFtb3VudEluaXRpYWwudmFsdWUgPT09IDApCglieXRlYyAzIC8vICAiYXNhX3RvdGFsIgoJYXBwX2dsb2JhbF9nZXQKCWludGMgMSAvLyAwCgk9PQoJYXNzZXJ0CgoJLy8gY29udHJhY3RzXENUQy5hbGdvLnRzOjYwCgkvLyBhc3NldCA9IHNlbmRBc3NldENyZWF0aW9uKHsKCS8vICAgICAgIGNvbmZpZ0Fzc2V0VG90YWw6IGFzc2V0QW1vdW50LAoJLy8gICAgICAgY29uZmlnQXNzZXREZWNpbWFsczogMCwKCS8vICAgICAgIGNvbmZpZ0Fzc2V0TmFtZTogJ0NvaW4gZm9yIENpcmNsZSBvZiBUcnVzdCcsCgkvLyAgICAgICBjb25maWdBc3NldFVuaXROYW1lOiAnQ1RDMScsCgkvLyAgICAgICBjb25maWdBc3NldFVSTDogJ2h0dHBzOi8vYWxnb3JhbmQuaHUvY3RjMS9jdGMxLmh0bWwnLAoJLy8gICAgICAgY29uZmlnQXNzZXREZWZhdWx0RnJvemVuOiAwLAoJLy8gICAgICAgY29uZmlnQXNzZXRNYW5hZ2VyOiBnbG9iYWxzLmN1cnJlbnRBcHBsaWNhdGlvbkFkZHJlc3MsCgkvLyAgICAgICBjb25maWdBc3NldFJlc2VydmU6IGdsb2JhbHMuY3VycmVudEFwcGxpY2F0aW9uQWRkcmVzcywKCS8vICAgICAgIGNvbmZpZ0Fzc2V0RnJlZXplOiBnbG9iYWxzLmN1cnJlbnRBcHBsaWNhdGlvbkFkZHJlc3MsCgkvLyAgICAgICBjb25maWdBc3NldENsYXdiYWNrOiBnbG9iYWxzLmN1cnJlbnRBcHBsaWNhdGlvbkFkZHJlc3MsCgkvLyAgICAgfSkKCWl0eG5fYmVnaW4KCWludGMgNCAvLyAgYWNmZwoJaXR4bl9maWVsZCBUeXBlRW51bQoKCS8vIGNvbnRyYWN0c1xDVEMuYWxnby50czo2MQoJLy8gY29uZmlnQXNzZXRUb3RhbDogYXNzZXRBbW91bnQKCWZyYW1lX2RpZyAtMiAvLyBhc3NldEFtb3VudDogdWludDY0CglpdHhuX2ZpZWxkIENvbmZpZ0Fzc2V0VG90YWwKCgkvLyBjb250cmFjdHNcQ1RDLmFsZ28udHM6NjIKCS8vIGNvbmZpZ0Fzc2V0RGVjaW1hbHM6IDAKCWludGMgMSAvLyAwCglpdHhuX2ZpZWxkIENvbmZpZ0Fzc2V0RGVjaW1hbHMKCgkvLyBjb250cmFjdHNcQ1RDLmFsZ28udHM6NjMKCS8vIGNvbmZpZ0Fzc2V0TmFtZTogJ0NvaW4gZm9yIENpcmNsZSBvZiBUcnVzdCcKCXB1c2hieXRlcyAweDQzNmY2OTZlMjA2NjZmNzIyMDQzNjk3MjYzNmM2NTIwNmY2NjIwNTQ3Mjc1NzM3NCAvLyAiQ29pbiBmb3IgQ2lyY2xlIG9mIFRydXN0IgoJaXR4bl9maWVsZCBDb25maWdBc3NldE5hbWUKCgkvLyBjb250cmFjdHNcQ1RDLmFsZ28udHM6NjQKCS8vIGNvbmZpZ0Fzc2V0VW5pdE5hbWU6ICdDVEMxJwoJcHVzaGJ5dGVzIDB4NDM1NDQzMzEgLy8gIkNUQzEiCglpdHhuX2ZpZWxkIENvbmZpZ0Fzc2V0VW5pdE5hbWUKCgkvLyBjb250cmFjdHNcQ1RDLmFsZ28udHM6NjUKCS8vIGNvbmZpZ0Fzc2V0VVJMOiAnaHR0cHM6Ly9hbGdvcmFuZC5odS9jdGMxL2N0YzEuaHRtbCcKCXB1c2hieXRlcyAweDY4NzQ3NDcwNzMzYTJmMmY2MTZjNjc2ZjcyNjE2ZTY0MmU2ODc1MmY2Mzc0NjMzMTJmNjM3NDYzMzEyZTY4NzQ2ZDZjIC8vICJodHRwczovL2FsZ29yYW5kLmh1L2N0YzEvY3RjMS5odG1sIgoJaXR4bl9maWVsZCBDb25maWdBc3NldFVSTAoKCS8vIGNvbnRyYWN0c1xDVEMuYWxnby50czo2NgoJLy8gY29uZmlnQXNzZXREZWZhdWx0RnJvemVuOiAwCglpbnRjIDEgLy8gMAoJaXR4bl9maWVsZCBDb25maWdBc3NldERlZmF1bHRGcm96ZW4KCgkvLyBjb250cmFjdHNcQ1RDLmFsZ28udHM6NjcKCS8vIGNvbmZpZ0Fzc2V0TWFuYWdlcjogZ2xvYmFscy5jdXJyZW50QXBwbGljYXRpb25BZGRyZXNzCglnbG9iYWwgQ3VycmVudEFwcGxpY2F0aW9uQWRkcmVzcwoJaXR4bl9maWVsZCBDb25maWdBc3NldE1hbmFnZXIKCgkvLyBjb250cmFjdHNcQ1RDLmFsZ28udHM6NjgKCS8vIGNvbmZpZ0Fzc2V0UmVzZXJ2ZTogZ2xvYmFscy5jdXJyZW50QXBwbGljYXRpb25BZGRyZXNzCglnbG9iYWwgQ3VycmVudEFwcGxpY2F0aW9uQWRkcmVzcwoJaXR4bl9maWVsZCBDb25maWdBc3NldFJlc2VydmUKCgkvLyBjb250cmFjdHNcQ1RDLmFsZ28udHM6NjkKCS8vIGNvbmZpZ0Fzc2V0RnJlZXplOiBnbG9iYWxzLmN1cnJlbnRBcHBsaWNhdGlvbkFkZHJlc3MKCWdsb2JhbCBDdXJyZW50QXBwbGljYXRpb25BZGRyZXNzCglpdHhuX2ZpZWxkIENvbmZpZ0Fzc2V0RnJlZXplCgoJLy8gY29udHJhY3RzXENUQy5hbGdvLnRzOjcwCgkvLyBjb25maWdBc3NldENsYXdiYWNrOiBnbG9iYWxzLmN1cnJlbnRBcHBsaWNhdGlvbkFkZHJlc3MKCWdsb2JhbCBDdXJyZW50QXBwbGljYXRpb25BZGRyZXNzCglpdHhuX2ZpZWxkIENvbmZpZ0Fzc2V0Q2xhd2JhY2sKCgkvLyBGZWUgZmllbGQgbm90IHNldCwgZGVmYXVsdGluZyB0byAwCglpbnRjIDEgLy8gMAoJaXR4bl9maWVsZCBGZWUKCgkvLyBTdWJtaXQgaW5uZXIgdHJhbnNhY3Rpb24KCWl0eG5fc3VibWl0CglpdHhuIENyZWF0ZWRBc3NldElECglmcmFtZV9idXJ5IDAgLy8gYXNzZXQ6IHVpbnQ2NAoKCS8vIGNvbnRyYWN0c1xDVEMuYWxnby50czo3NAoJLy8gdGhpcy5hc3NldEFtb3VudEluaXRpYWwudmFsdWUgPSBhc3NldEFtb3VudAoJYnl0ZWMgMyAvLyAgImFzYV90b3RhbCIKCWZyYW1lX2RpZyAtMiAvLyBhc3NldEFtb3VudDogdWludDY0CglhcHBfZ2xvYmFsX3B1dAoKCS8vIGNvbnRyYWN0c1xDVEMuYWxnby50czo3NQoJLy8gdGhpcy5hc3NldEFtb3VudC52YWx1ZSA9IGFzc2V0QW1vdW50CglieXRlYyAxIC8vICAiYXNhX2FtdCIKCWZyYW1lX2RpZyAtMiAvLyBhc3NldEFtb3VudDogdWludDY0CglhcHBfZ2xvYmFsX3B1dAoKCS8vIGNvbnRyYWN0c1xDVEMuYWxnby50czo3NgoJLy8gdGhpcy5hc3NldFByaWNlLnZhbHVlID0gYXNzZXRQcmljZQoJYnl0ZWMgNCAvLyAgImFzYV9wcmljZSIKCWZyYW1lX2RpZyAtMSAvLyBhc3NldFByaWNlOiB1aW50NjQKCWFwcF9nbG9iYWxfcHV0CgoJLy8gY29udHJhY3RzXENUQy5hbGdvLnRzOjc3CgkvLyB0aGlzLmFzc2V0LnZhbHVlID0gYXNzZXQKCWJ5dGVjIDAgLy8gICJhc2FfaWQiCglmcmFtZV9kaWcgMCAvLyBhc3NldDogdWludDY0CglhcHBfZ2xvYmFsX3B1dAoKCS8vIGNvbnRyYWN0c1xDVEMuYWxnby50czo3OAoJLy8gdGhpcy5zZWxsUGVyaW9kRW5kLnZhbHVlID0gZ2xvYmFscy5sYXRlc3RUaW1lc3RhbXAgKyBzZWxsUGVyaW9kTGVuZ3RoCglieXRlYyA1IC8vICAiZW5kIgoJZ2xvYmFsIExhdGVzdFRpbWVzdGFtcAoJZnJhbWVfZGlnIC0zIC8vIHNlbGxQZXJpb2RMZW5ndGg6IHVpbnQ2NAoJKwoJYXBwX2dsb2JhbF9wdXQKCgkvLyBjb250cmFjdHNcQ1RDLmFsZ28udHM6NzkKCS8vIHRoaXMuYXNzZXRWYWxpZGl0eVBlcmlvZC52YWx1ZSA9IGFzc2V0VmFsaWRpdHlQZXJpb2QKCWJ5dGVjIDYgLy8gICJhc2FfdiIKCWZyYW1lX2RpZyAtNCAvLyBhc3NldFZhbGlkaXR5UGVyaW9kOiB1aW50NjQKCWFwcF9nbG9iYWxfcHV0CglyZXRzdWIKCi8vIGdldEFwcENyZWF0b3JBZGRyZXNzKClhZGRyZXNzCiphYmlfcm91dGVfZ2V0QXBwQ3JlYXRvckFkZHJlc3M6CgkvLyBUaGUgQUJJIHJldHVybiBwcmVmaXgKCWJ5dGVjIDIgLy8gMHgxNTFmN2M3NQoKCS8vIGV4ZWN1dGUgZ2V0QXBwQ3JlYXRvckFkZHJlc3MoKWFkZHJlc3MKCWNhbGxzdWIgZ2V0QXBwQ3JlYXRvckFkZHJlc3MKCWNvbmNhdAoJbG9nCglpbnRjIDAgLy8gMQoJcmV0dXJuCgovLyBnZXRBcHBDcmVhdG9yQWRkcmVzcygpOiBBZGRyZXNzCi8vCi8vIGdldCBhcHAgY3JlYXRvciBhZGRyZXNzCi8vIEByZXR1cm5zIGFwcCBjcmVhdG9yIGFkZHJlc3MKZ2V0QXBwQ3JlYXRvckFkZHJlc3M6Cglwcm90byAwIDEKCgkvLyBjb250cmFjdHNcQ1RDLmFsZ28udHM6ODcKCS8vIHJldHVybiB0aGlzLmFwcENyZWF0b3JBZGRyZXNzLnZhbHVlOwoJYnl0ZWMgNyAvLyAgImFwY2EiCglhcHBfZ2xvYmFsX2dldAoJcmV0c3ViCgovLyBnZXRBcHBWZXJzaW9uKClzdHJpbmcKKmFiaV9yb3V0ZV9nZXRBcHBWZXJzaW9uOgoJLy8gVGhlIEFCSSByZXR1cm4gcHJlZml4CglieXRlYyAyIC8vIDB4MTUxZjdjNzUKCgkvLyBleGVjdXRlIGdldEFwcFZlcnNpb24oKXN0cmluZwoJY2FsbHN1YiBnZXRBcHBWZXJzaW9uCglkdXAKCWxlbgoJaXRvYgoJZXh0cmFjdCA2IDIKCXN3YXAKCWNvbmNhdAoJY29uY2F0Cglsb2cKCWludGMgMCAvLyAxCglyZXR1cm4KCi8vIGdldEFwcFZlcnNpb24oKTogc3RyaW5nCi8vCi8vIGdldCBhcHAgdmVyc2lvbgovLyBAcmV0dXJucyBhcHAgdmVyc2lvbgpnZXRBcHBWZXJzaW9uOgoJcHJvdG8gMCAxCgoJLy8gY29udHJhY3RzXENUQy5hbGdvLnRzOjk1CgkvLyByZXR1cm4gdGhpcy5hcHBWZXJzaW9uLnZhbHVlOwoJYnl0ZWMgOCAvLyAgImFwdiIKCWFwcF9nbG9iYWxfZ2V0CglleHRyYWN0IDIgMAoJcmV0c3ViCgovLyBnZXRBc3NldEFtb3VudEluaXRpYWwoKXVpbnQ2NAoqYWJpX3JvdXRlX2dldEFzc2V0QW1vdW50SW5pdGlhbDoKCS8vIFRoZSBBQkkgcmV0dXJuIHByZWZpeAoJYnl0ZWMgMiAvLyAweDE1MWY3Yzc1CgoJLy8gZXhlY3V0ZSBnZXRBc3NldEFtb3VudEluaXRpYWwoKXVpbnQ2NAoJY2FsbHN1YiBnZXRBc3NldEFtb3VudEluaXRpYWwKCWl0b2IKCWNvbmNhdAoJbG9nCglpbnRjIDAgLy8gMQoJcmV0dXJuCgovLyBnZXRBc3NldEFtb3VudEluaXRpYWwoKTogdWludDY0Ci8vCi8vIGdldCBhc2EgaW5pdGlhbCBhbW91bnQKLy8gQHJldHVybnMgYXNhIGFtb3VudCBtaW50ZWQgaW5pdGlhbGx5CmdldEFzc2V0QW1vdW50SW5pdGlhbDoKCXByb3RvIDAgMQoKCS8vIGNvbnRyYWN0c1xDVEMuYWxnby50czoxMDMKCS8vIHJldHVybiB0aGlzLmFzc2V0QW1vdW50SW5pdGlhbC52YWx1ZTsKCWJ5dGVjIDMgLy8gICJhc2FfdG90YWwiCglhcHBfZ2xvYmFsX2dldAoJcmV0c3ViCgovLyBnZXRBc3NldEFtb3VudCgpdWludDY0CiphYmlfcm91dGVfZ2V0QXNzZXRBbW91bnQ6CgkvLyBUaGUgQUJJIHJldHVybiBwcmVmaXgKCWJ5dGVjIDIgLy8gMHgxNTFmN2M3NQoKCS8vIGV4ZWN1dGUgZ2V0QXNzZXRBbW91bnQoKXVpbnQ2NAoJY2FsbHN1YiBnZXRBc3NldEFtb3VudAoJaXRvYgoJY29uY2F0Cglsb2cKCWludGMgMCAvLyAxCglyZXR1cm4KCi8vIGdldEFzc2V0QW1vdW50KCk6IHVpbnQ2NAovLwovLyBnZXQgYXNhIGFtb3VudAovLyBAcmV0dXJucyBzZWxsYWJsZSBhc2EgYW1vdW50CmdldEFzc2V0QW1vdW50OgoJcHJvdG8gMCAxCgoJLy8gY29udHJhY3RzXENUQy5hbGdvLnRzOjExMQoJLy8gcmV0dXJuIHRoaXMuYXNzZXRBbW91bnRJbml0aWFsLnZhbHVlOwoJYnl0ZWMgMyAvLyAgImFzYV90b3RhbCIKCWFwcF9nbG9iYWxfZ2V0CglyZXRzdWIKCi8vIGdldEFzc2V0UHJpY2UoKXVpbnQ2NAoqYWJpX3JvdXRlX2dldEFzc2V0UHJpY2U6CgkvLyBUaGUgQUJJIHJldHVybiBwcmVmaXgKCWJ5dGVjIDIgLy8gMHgxNTFmN2M3NQoKCS8vIGV4ZWN1dGUgZ2V0QXNzZXRQcmljZSgpdWludDY0CgljYWxsc3ViIGdldEFzc2V0UHJpY2UKCWl0b2IKCWNvbmNhdAoJbG9nCglpbnRjIDAgLy8gMQoJcmV0dXJuCgovLyBnZXRBc3NldFByaWNlKCk6IHVpbnQ2NAovLwovLyBnZXQgYXNhIHByaWNlCi8vIEByZXR1cm5zIGFzYSBwcmljZSBpbiBtaWNyb0FsZ29zCmdldEFzc2V0UHJpY2U6Cglwcm90byAwIDEKCgkvLyBjb250cmFjdHNcQ1RDLmFsZ28udHM6MTE5CgkvLyByZXR1cm4gdGhpcy5hc3NldFByaWNlLnZhbHVlOwoJYnl0ZWMgNCAvLyAgImFzYV9wcmljZSIKCWFwcF9nbG9iYWxfZ2V0CglyZXRzdWIKCi8vIGdldEFzc2V0SUQoKXVpbnQ2NAoqYWJpX3JvdXRlX2dldEFzc2V0SUQ6CgkvLyBUaGUgQUJJIHJldHVybiBwcmVmaXgKCWJ5dGVjIDIgLy8gMHgxNTFmN2M3NQoKCS8vIGV4ZWN1dGUgZ2V0QXNzZXRJRCgpdWludDY0CgljYWxsc3ViIGdldEFzc2V0SUQKCWl0b2IKCWNvbmNhdAoJbG9nCglpbnRjIDAgLy8gMQoJcmV0dXJuCgovLyBnZXRBc3NldElEKCk6IEFzc2V0SUQKLy8KLy8gZ2V0IGFzYSBpZAovLyBAcmV0dXJucyBhc2EgaWQKZ2V0QXNzZXRJRDoKCXByb3RvIDAgMQoKCS8vIGNvbnRyYWN0c1xDVEMuYWxnby50czoxMjcKCS8vIHJldHVybiB0aGlzLmFzc2V0LnZhbHVlOwoJYnl0ZWMgMCAvLyAgImFzYV9pZCIKCWFwcF9nbG9iYWxfZ2V0CglyZXRzdWIKCi8vIGdldFNlbGxQZXJpb2RFbmQoKXVpbnQ2NAoqYWJpX3JvdXRlX2dldFNlbGxQZXJpb2RFbmQ6CgkvLyBUaGUgQUJJIHJldHVybiBwcmVmaXgKCWJ5dGVjIDIgLy8gMHgxNTFmN2M3NQoKCS8vIGV4ZWN1dGUgZ2V0U2VsbFBlcmlvZEVuZCgpdWludDY0CgljYWxsc3ViIGdldFNlbGxQZXJpb2RFbmQKCWl0b2IKCWNvbmNhdAoJbG9nCglpbnRjIDAgLy8gMQoJcmV0dXJuCgovLyBnZXRTZWxsUGVyaW9kRW5kKCk6IHVpbnQ2NAovLwovLyBnZXQgZW5kIG9mIHNlbGwgcGVyaW9kCi8vIEByZXR1cm5zIGVuZCBvZiBzZWxsIHBlcmlvZCBhcyBhYnNvbHV0ZSB0aW1lIGluIHNlYywgZnJvbSAwMS1KYW4tMTk3MApnZXRTZWxsUGVyaW9kRW5kOgoJcHJvdG8gMCAxCgoJLy8gY29udHJhY3RzXENUQy5hbGdvLnRzOjEzNQoJLy8gcmV0dXJuIHRoaXMuc2VsbFBlcmlvZEVuZC52YWx1ZTsKCWJ5dGVjIDUgLy8gICJlbmQiCglhcHBfZ2xvYmFsX2dldAoJcmV0c3ViCgovLyBidXlBc3NldChwYXkpdm9pZAoqYWJpX3JvdXRlX2J1eUFzc2V0OgoJLy8gcGF5bWVudDogcGF5Cgl0eG4gR3JvdXBJbmRleAoJaW50YyAwIC8vIDEKCS0KCWR1cAoJZ3R4bnMgVHlwZUVudW0KCWludGMgMCAvLyAgcGF5Cgk9PQoKCS8vIGFyZ3VtZW50IDAgKHBheW1lbnQpIGZvciBidXlBc3NldCBtdXN0IGJlIGEgcGF5IHRyYW5zYWN0aW9uCglhc3NlcnQKCgkvLyBleGVjdXRlIGJ1eUFzc2V0KHBheSl2b2lkCgljYWxsc3ViIGJ1eUFzc2V0CglpbnRjIDAgLy8gMQoJcmV0dXJuCgovLyBidXlBc3NldChwYXltZW50OiBQYXlUeG4pOiB2b2lkCi8vCi8vIEJ1eSAxIHBpZWNlIG9mIHRoZSBhc3NldAovLyBAcGFyYW0gcGF5bWVudCB0eG4sIHdoZXJlIGFtb3VudCBpcyBlcXVhbCB0byBhc3NldFByaWNlLCByZWNlaXZlciBpcyBhcHAgYWRkcmVzcwpidXlBc3NldDoKCXByb3RvIDEgMAoKCS8vIEVuc3VyZSBhc3NldCBzZWxsaW5nIHBlcmlvZCBoYXNuJ3QgZW5kZWQgeWV0CgkvLyBjb250cmFjdHNcQ1RDLmFsZ28udHM6MTQ0CgkvLyBhc3NlcnQoZ2xvYmFscy5sYXRlc3RUaW1lc3RhbXAgPD0gdGhpcy5zZWxsUGVyaW9kRW5kLnZhbHVlLCAnU2VsbCBwZXJpb2QgZW5kZWQnKQoJZ2xvYmFsIExhdGVzdFRpbWVzdGFtcAoJYnl0ZWMgNSAvLyAgImVuZCIKCWFwcF9nbG9iYWxfZ2V0Cgk8PQoKCS8vIFNlbGwgcGVyaW9kIGVuZGVkCglhc3NlcnQKCgkvLyBFbnN1cmUgdGhhdCBidXllciBoYXNuJ3QgYm91Z2h0IGVhcmxpZXIgdGhpcyBhc3NldAoJLy8gY29udHJhY3RzXENUQy5hbGdvLnRzOjE0NwoJLy8gYXNzZXJ0KHRoaXMudHhuLnNlbmRlci5hc3NldEJhbGFuY2UodGhpcy5hc3NldC52YWx1ZSkgPT09IDAsICdBc3NldCBhbHJlYWR5IGJvdWdodCcpCgl0eG4gU2VuZGVyCglieXRlYyAwIC8vICAiYXNhX2lkIgoJYXBwX2dsb2JhbF9nZXQKCWFzc2V0X2hvbGRpbmdfZ2V0IEFzc2V0QmFsYW5jZQoJcG9wCglpbnRjIDEgLy8gMAoJPT0KCgkvLyBBc3NldCBhbHJlYWR5IGJvdWdodAoJYXNzZXJ0CgoJLy8gVmVyaWZ5IHBheW1lbnQgdHJhbnNhY3Rpb246IHJlY2VpdmVyIGlzIHRoZSBhcHAsIGFtb3VudCBpcyB0aGUgYXNzZXQgcHJpY2UKCS8vIGNvbnRyYWN0c1xDVEMuYWxnby50czoxNTAKCS8vIHZlcmlmeVBheVR4bihwYXltZW50LCB7CgkvLyAgICAgICBzZW5kZXI6IHRoaXMudHhuLnNlbmRlciwKCS8vICAgICAgIHJlY2VpdmVyOiBnbG9iYWxzLmN1cnJlbnRBcHBsaWNhdGlvbkFkZHJlc3MsCgkvLyAgICAgICBhbW91bnQ6IHsgZ3JlYXRlclRoYW5FcXVhbFRvOiB0aGlzLmFzc2V0UHJpY2UudmFsdWUsIGxlc3NUaGFuRXF1YWxUbzogdGhpcy5hc3NldFByaWNlLnZhbHVlIH0sCgkvLyAgICAgfSkKCS8vIHZlcmlmeSBzZW5kZXIKCWZyYW1lX2RpZyAtMSAvLyBwYXltZW50OiBQYXlUeG4KCWd0eG5zIFNlbmRlcgoJdHhuIFNlbmRlcgoJPT0KCgkvLyB0cmFuc2FjdGlvbiB2ZXJpZmljYXRpb24gZmFpbGVkOiB7InR4biI6InBheW1lbnQiLCJmaWVsZCI6InNlbmRlciIsImV4cGVjdGVkIjoidGhpcy50eG4uc2VuZGVyIn0KCWFzc2VydAoKCS8vIHZlcmlmeSByZWNlaXZlcgoJZnJhbWVfZGlnIC0xIC8vIHBheW1lbnQ6IFBheVR4bgoJZ3R4bnMgUmVjZWl2ZXIKCWdsb2JhbCBDdXJyZW50QXBwbGljYXRpb25BZGRyZXNzCgk9PQoKCS8vIHRyYW5zYWN0aW9uIHZlcmlmaWNhdGlvbiBmYWlsZWQ6IHsidHhuIjoicGF5bWVudCIsImZpZWxkIjoicmVjZWl2ZXIiLCJleHBlY3RlZCI6Imdsb2JhbHMuY3VycmVudEFwcGxpY2F0aW9uQWRkcmVzcyJ9Cglhc3NlcnQKCgkvLyB2ZXJpZnkgYW1vdW50CglmcmFtZV9kaWcgLTEgLy8gcGF5bWVudDogUGF5VHhuCglndHhucyBBbW91bnQKCWJ5dGVjIDQgLy8gICJhc2FfcHJpY2UiCglhcHBfZ2xvYmFsX2dldAoJPj0KCgkvLyB0cmFuc2FjdGlvbiB2ZXJpZmljYXRpb24gZmFpbGVkOiB7InR4biI6InBheW1lbnQiLCJmaWVsZCI6ImFtb3VudCIsImNvbmRpdGlvbiI6ImdyZWF0ZXJUaGFuRXF1YWxUbyIsImV4cGVjdGVkIjoiPj10aGlzLmFzc2V0UHJpY2UudmFsdWUifQoJYXNzZXJ0CglmcmFtZV9kaWcgLTEgLy8gcGF5bWVudDogUGF5VHhuCglndHhucyBBbW91bnQKCWJ5dGVjIDQgLy8gICJhc2FfcHJpY2UiCglhcHBfZ2xvYmFsX2dldAoJPD0KCgkvLyB0cmFuc2FjdGlvbiB2ZXJpZmljYXRpb24gZmFpbGVkOiB7InR4biI6InBheW1lbnQiLCJmaWVsZCI6ImFtb3VudCIsImNvbmRpdGlvbiI6Imxlc3NUaGFuRXF1YWxUbyIsImV4cGVjdGVkIjoiPD10aGlzLmFzc2V0UHJpY2UudmFsdWUifQoJYXNzZXJ0CgoJLy8gSXMgdGhlcmUgc3RpbGwgYW4gYXNzZXQgdG8gc2VsbD8gKHRoaXMgY2FuIGJlIG9wdGltaXplZCBhd2F5KQoJLy8gY29udHJhY3RzXENUQy5hbGdvLnRzOjE1NwoJLy8gYXNzZXJ0KHRoaXMuYXNzZXRBbW91bnQudmFsdWUgPiAwLCAnTm8gbW9yZSBBU0EgdG8gc2VsbCcpCglieXRlYyAxIC8vICAiYXNhX2FtdCIKCWFwcF9nbG9iYWxfZ2V0CglpbnRjIDEgLy8gMAoJPgoKCS8vIE5vIG1vcmUgQVNBIHRvIHNlbGwKCWFzc2VydAoKCS8vIE9wdCBpbnRvIGFzc2V0LCB1bmNvbmRpdGlvbmFsbHkKCS8vIGNvbnRyYWN0c1xDVEMuYWxnby50czoxNjAKCS8vIHNlbmRBc3NldFRyYW5zZmVyKHsKCS8vICAgICAgIHhmZXJBc3NldDogdGhpcy5hc3NldC52YWx1ZSwKCS8vICAgICAgIGFzc2V0QW1vdW50OiAwLAoJLy8gICAgICAgYXNzZXRSZWNlaXZlcjogdGhpcy5hcHAuYWRkcmVzcywKCS8vICAgICB9KQoJaXR4bl9iZWdpbgoJaW50YyAyIC8vICBheGZlcgoJaXR4bl9maWVsZCBUeXBlRW51bQoKCS8vIGNvbnRyYWN0c1xDVEMuYWxnby50czoxNjEKCS8vIHhmZXJBc3NldDogdGhpcy5hc3NldC52YWx1ZQoJYnl0ZWMgMCAvLyAgImFzYV9pZCIKCWFwcF9nbG9iYWxfZ2V0CglpdHhuX2ZpZWxkIFhmZXJBc3NldAoKCS8vIGNvbnRyYWN0c1xDVEMuYWxnby50czoxNjIKCS8vIGFzc2V0QW1vdW50OiAwCglpbnRjIDEgLy8gMAoJaXR4bl9maWVsZCBBc3NldEFtb3VudAoKCS8vIGNvbnRyYWN0c1xDVEMuYWxnby50czoxNjMKCS8vIGFzc2V0UmVjZWl2ZXI6IHRoaXMuYXBwLmFkZHJlc3MKCWdsb2JhbCBDdXJyZW50QXBwbGljYXRpb25BZGRyZXNzCglpdHhuX2ZpZWxkIEFzc2V0UmVjZWl2ZXIKCgkvLyBGZWUgZmllbGQgbm90IHNldCwgZGVmYXVsdGluZyB0byAwCglpbnRjIDEgLy8gMAoJaXR4bl9maWVsZCBGZWUKCgkvLyBTdWJtaXQgaW5uZXIgdHJhbnNhY3Rpb24KCWl0eG5fc3VibWl0CgoJLy8gVW5mcmVlemUgYXNzZXQKCS8vIGNvbnRyYWN0c1xDVEMuYWxnby50czoxNjcKCS8vIHNlbmRBc3NldEZyZWV6ZSh7CgkvLyAgICAgICBmcmVlemVBc3NldDogdGhpcy5hc3NldC52YWx1ZSwKCS8vICAgICAgIGZyZWV6ZUFzc2V0QWNjb3VudDogdGhpcy50eG4uc2VuZGVyLAoJLy8gICAgICAgZnJlZXplQXNzZXRGcm96ZW46IGZhbHNlLAoJLy8gICAgIH0pCglpdHhuX2JlZ2luCglpbnRjIDUgLy8gIGFmcnoKCWl0eG5fZmllbGQgVHlwZUVudW0KCgkvLyBjb250cmFjdHNcQ1RDLmFsZ28udHM6MTY4CgkvLyBmcmVlemVBc3NldDogdGhpcy5hc3NldC52YWx1ZQoJYnl0ZWMgMCAvLyAgImFzYV9pZCIKCWFwcF9nbG9iYWxfZ2V0CglpdHhuX2ZpZWxkIEZyZWV6ZUFzc2V0CgoJLy8gY29udHJhY3RzXENUQy5hbGdvLnRzOjE2OQoJLy8gZnJlZXplQXNzZXRBY2NvdW50OiB0aGlzLnR4bi5zZW5kZXIKCXR4biBTZW5kZXIKCWl0eG5fZmllbGQgRnJlZXplQXNzZXRBY2NvdW50CgoJLy8gY29udHJhY3RzXENUQy5hbGdvLnRzOjE3MAoJLy8gZnJlZXplQXNzZXRGcm96ZW46IGZhbHNlCglpbnRjIDEgLy8gMAoJaXR4bl9maWVsZCBGcmVlemVBc3NldEZyb3plbgoKCS8vIEZlZSBmaWVsZCBub3Qgc2V0LCBkZWZhdWx0aW5nIHRvIDAKCWludGMgMSAvLyAwCglpdHhuX2ZpZWxkIEZlZQoKCS8vIFN1Ym1pdCBpbm5lciB0cmFuc2FjdGlvbgoJaXR4bl9zdWJtaXQKCgkvLyBTZW5kIGFzc2V0IHRvIHRoZSBidXllcgoJLy8gY29udHJhY3RzXENUQy5hbGdvLnRzOjE3NAoJLy8gc2VuZEFzc2V0VHJhbnNmZXIoewoJLy8gICAgICAgeGZlckFzc2V0OiB0aGlzLmFzc2V0LnZhbHVlLAoJLy8gICAgICAgYXNzZXRSZWNlaXZlcjogdGhpcy50eG4uc2VuZGVyLAoJLy8gICAgICAgYXNzZXRBbW91bnQ6IDEsCgkvLyAgICAgfSkKCWl0eG5fYmVnaW4KCWludGMgMiAvLyAgYXhmZXIKCWl0eG5fZmllbGQgVHlwZUVudW0KCgkvLyBjb250cmFjdHNcQ1RDLmFsZ28udHM6MTc1CgkvLyB4ZmVyQXNzZXQ6IHRoaXMuYXNzZXQudmFsdWUKCWJ5dGVjIDAgLy8gICJhc2FfaWQiCglhcHBfZ2xvYmFsX2dldAoJaXR4bl9maWVsZCBYZmVyQXNzZXQKCgkvLyBjb250cmFjdHNcQ1RDLmFsZ28udHM6MTc2CgkvLyBhc3NldFJlY2VpdmVyOiB0aGlzLnR4bi5zZW5kZXIKCXR4biBTZW5kZXIKCWl0eG5fZmllbGQgQXNzZXRSZWNlaXZlcgoKCS8vIGNvbnRyYWN0c1xDVEMuYWxnby50czoxNzcKCS8vIGFzc2V0QW1vdW50OiAxCglpbnRjIDAgLy8gMQoJaXR4bl9maWVsZCBBc3NldEFtb3VudAoKCS8vIEZlZSBmaWVsZCBub3Qgc2V0LCBkZWZhdWx0aW5nIHRvIDAKCWludGMgMSAvLyAwCglpdHhuX2ZpZWxkIEZlZQoKCS8vIFN1Ym1pdCBpbm5lciB0cmFuc2FjdGlvbgoJaXR4bl9zdWJtaXQKCgkvLyBGcmVlemUgdGhlIGFzc2V0IGF0IHRoZSBidXllcidzIGFkZHJlc3MgKHRoaXMgY2FuIGJlIG9wdGltaXplZCBhd2F5KQoJLy8gY29udHJhY3RzXENUQy5hbGdvLnRzOjE4MQoJLy8gc2VuZEFzc2V0RnJlZXplKHsKCS8vICAgICAgIGZyZWV6ZUFzc2V0OiB0aGlzLmFzc2V0LnZhbHVlLAoJLy8gICAgICAgZnJlZXplQXNzZXRBY2NvdW50OiB0aGlzLnR4bi5zZW5kZXIsCgkvLyAgICAgICBmcmVlemVBc3NldEZyb3plbjogdHJ1ZSwKCS8vICAgICB9KQoJaXR4bl9iZWdpbgoJaW50YyA1IC8vICBhZnJ6CglpdHhuX2ZpZWxkIFR5cGVFbnVtCgoJLy8gY29udHJhY3RzXENUQy5hbGdvLnRzOjE4MgoJLy8gZnJlZXplQXNzZXQ6IHRoaXMuYXNzZXQudmFsdWUKCWJ5dGVjIDAgLy8gICJhc2FfaWQiCglhcHBfZ2xvYmFsX2dldAoJaXR4bl9maWVsZCBGcmVlemVBc3NldAoKCS8vIGNvbnRyYWN0c1xDVEMuYWxnby50czoxODMKCS8vIGZyZWV6ZUFzc2V0QWNjb3VudDogdGhpcy50eG4uc2VuZGVyCgl0eG4gU2VuZGVyCglpdHhuX2ZpZWxkIEZyZWV6ZUFzc2V0QWNjb3VudAoKCS8vIGNvbnRyYWN0c1xDVEMuYWxnby50czoxODQKCS8vIGZyZWV6ZUFzc2V0RnJvemVuOiB0cnVlCglpbnRjIDAgLy8gMQoJaXR4bl9maWVsZCBGcmVlemVBc3NldEZyb3plbgoKCS8vIEZlZSBmaWVsZCBub3Qgc2V0LCBkZWZhdWx0aW5nIHRvIDAKCWludGMgMSAvLyAwCglpdHhuX2ZpZWxkIEZlZQoKCS8vIFN1Ym1pdCBpbm5lciB0cmFuc2FjdGlvbgoJaXR4bl9zdWJtaXQKCgkvLyBjb250cmFjdHNcQ1RDLmFsZ28udHM6MTg4CgkvLyB0aGlzLmFzc2V0QW1vdW50LnZhbHVlID0gdGhpcy5hc3NldEFtb3VudC52YWx1ZSAtIDEKCWJ5dGVjIDEgLy8gICJhc2FfYW10IgoJZHVwCglhcHBfZ2xvYmFsX2dldAoJaW50YyAwIC8vIDEKCS0KCWFwcF9nbG9iYWxfcHV0CglyZXRzdWIKCi8vIHNlbmRBbGdvc1RvQ3JlYXRvcigpdm9pZAoqYWJpX3JvdXRlX3NlbmRBbGdvc1RvQ3JlYXRvcjoKCS8vIGV4ZWN1dGUgc2VuZEFsZ29zVG9DcmVhdG9yKCl2b2lkCgljYWxsc3ViIHNlbmRBbGdvc1RvQ3JlYXRvcgoJaW50YyAwIC8vIDEKCXJldHVybgoKLy8gc2VuZEFsZ29zVG9DcmVhdG9yKCk6IHZvaWQKLy8KLy8gU2VuZCBBbGdvcyBmcm9tIHRoZSBhcHAgYWRkcmVzcyB0byB0aGUgYXBwIGNyZWF0b3IgYWRkcmVzcwpzZW5kQWxnb3NUb0NyZWF0b3I6Cglwcm90byAwIDAKCgkvLyBQdXNoIGVtcHR5IGJ5dGVzIGFmdGVyIHRoZSBmcmFtZSBwb2ludGVyIHRvIHJlc2VydmUgc3BhY2UgZm9yIGxvY2FsIHZhcmlhYmxlcwoJYnl0ZWMgOSAvLyAweAoKCS8vIEFsbG93IG9ubHkgdGhlIGNyZWF0b3IgdG8gY2FsbCB0aGlzIG1ldGhvZAoJLy8gY29udHJhY3RzXENUQy5hbGdvLnRzOjE5NgoJLy8gdmVyaWZ5QXBwQ2FsbFR4bih0aGlzLnR4biwgeyBzZW5kZXI6IGdsb2JhbHMuY3JlYXRvckFkZHJlc3MgfSkKCS8vIHZlcmlmeSBzZW5kZXIKCXR4biBTZW5kZXIKCWdsb2JhbCBDcmVhdG9yQWRkcmVzcwoJPT0KCgkvLyB0cmFuc2FjdGlvbiB2ZXJpZmljYXRpb24gZmFpbGVkOiB7InR4biI6InRoaXMudHhuIiwiZmllbGQiOiJzZW5kZXIiLCJleHBlY3RlZCI6Imdsb2JhbHMuY3JlYXRvckFkZHJlc3MifQoJYXNzZXJ0CgoJLy8gU2VuZCBiYWNrIGFsbCB0aGUgQWxnb3MgYWJvdmUgbWluQW1vdW50IHRvIHRoZSBhcHAgY3JlYXRvcgoJLy8gY29udHJhY3RzXENUQy5hbGdvLnRzOjIwMAoJLy8gYmFsYW5jZSA9IGdsb2JhbHMuY3VycmVudEFwcGxpY2F0aW9uQWRkcmVzcy5iYWxhbmNlCglnbG9iYWwgQ3VycmVudEFwcGxpY2F0aW9uQWRkcmVzcwoJYWNjdF9wYXJhbXNfZ2V0IEFjY3RCYWxhbmNlCglwb3AKCWZyYW1lX2J1cnkgMCAvLyBiYWxhbmNlOiB1aW50NjQKCgkvLyAqaWYwX2NvbmRpdGlvbgoJLy8gY29udHJhY3RzXENUQy5hbGdvLnRzOjIwMQoJLy8gYmFsYW5jZSA+IG1pbkFtb3VudAoJZnJhbWVfZGlnIDAgLy8gYmFsYW5jZTogdWludDY0CglpbnRjIDMgLy8gNjAwMDAwCgk+CglieiAqaWYwX2VuZAoKCS8vICppZjBfY29uc2VxdWVudAoJLy8gY29udHJhY3RzXENUQy5hbGdvLnRzOjIwMgoJLy8gc2VuZFBheW1lbnQoewoJLy8gICAgICAgICByZWNlaXZlcjogZ2xvYmFscy5jcmVhdG9yQWRkcmVzcywKCS8vICAgICAgICAgYW1vdW50OiBiYWxhbmNlIC0gbWluQW1vdW50LAoJLy8gICAgICAgfSkKCWl0eG5fYmVnaW4KCWludGMgMCAvLyAgcGF5CglpdHhuX2ZpZWxkIFR5cGVFbnVtCgoJLy8gY29udHJhY3RzXENUQy5hbGdvLnRzOjIwMwoJLy8gcmVjZWl2ZXI6IGdsb2JhbHMuY3JlYXRvckFkZHJlc3MKCWdsb2JhbCBDcmVhdG9yQWRkcmVzcwoJaXR4bl9maWVsZCBSZWNlaXZlcgoKCS8vIGNvbnRyYWN0c1xDVEMuYWxnby50czoyMDQKCS8vIGFtb3VudDogYmFsYW5jZSAtIG1pbkFtb3VudAoJZnJhbWVfZGlnIDAgLy8gYmFsYW5jZTogdWludDY0CglpbnRjIDMgLy8gNjAwMDAwCgktCglpdHhuX2ZpZWxkIEFtb3VudAoKCS8vIEZlZSBmaWVsZCBub3Qgc2V0LCBkZWZhdWx0aW5nIHRvIDAKCWludGMgMSAvLyAwCglpdHhuX2ZpZWxkIEZlZQoKCS8vIFN1Ym1pdCBpbm5lciB0cmFuc2FjdGlvbgoJaXR4bl9zdWJtaXQKCippZjBfZW5kOgoJcmV0c3ViCgovLyBjbGF3YmFjayhhZGRyZXNzKXZvaWQKKmFiaV9yb3V0ZV9jbGF3YmFjazoKCS8vIGFkZHI6IGFkZHJlc3MKCXR4bmEgQXBwbGljYXRpb25BcmdzIDEKCWR1cAoJbGVuCglpbnRjIDYgLy8gMzIKCT09CgoJLy8gYXJndW1lbnQgMCAoYWRkcikgZm9yIGNsYXdiYWNrIG11c3QgYmUgYSBhZGRyZXNzCglhc3NlcnQKCgkvLyBleGVjdXRlIGNsYXdiYWNrKGFkZHJlc3Mpdm9pZAoJY2FsbHN1YiBjbGF3YmFjawoJaW50YyAwIC8vIDEKCXJldHVybgoKLy8gY2xhd2JhY2soYWRkcjogQWRkcmVzcyk6IHZvaWQKLy8KLy8gQ2xhd2JhY2sgYXNzZXQgdG8gYXBwICYgaW5jIGFtb3VudAovLyBAcGFyYW0gYWRkciBhZGRyZXNzIGZyb20gd2hpY2ggdG8gY2xhd2JhY2sgYXNzZXQKY2xhd2JhY2s6Cglwcm90byAxIDAKCgkvLyBBbGxvdyBvbmx5IHRoZSBhcHAgY3JlYXRvciB0byBjYWxsIHRoaXMgbWV0aG9kCgkvLyBjb250cmFjdHNcQ1RDLmFsZ28udHM6MjE1CgkvLyB2ZXJpZnlBcHBDYWxsVHhuKHRoaXMudHhuLCB7IHNlbmRlcjogZ2xvYmFscy5jcmVhdG9yQWRkcmVzcyB9KQoJLy8gdmVyaWZ5IHNlbmRlcgoJdHhuIFNlbmRlcgoJZ2xvYmFsIENyZWF0b3JBZGRyZXNzCgk9PQoKCS8vIHRyYW5zYWN0aW9uIHZlcmlmaWNhdGlvbiBmYWlsZWQ6IHsidHhuIjoidGhpcy50eG4iLCJmaWVsZCI6InNlbmRlciIsImV4cGVjdGVkIjoiZ2xvYmFscy5jcmVhdG9yQWRkcmVzcyJ9Cglhc3NlcnQKCgkvLyBDbGF3YmFjayBhc3NldHMgdG8gYXBwCgkvLyBjb250cmFjdHNcQ1RDLmFsZ28udHM6MjE4CgkvLyBzZW5kQXNzZXRUcmFuc2Zlcih7CgkvLyAgICAgICB4ZmVyQXNzZXQ6IHRoaXMuYXNzZXQudmFsdWUsCgkvLyAgICAgICBhc3NldEFtb3VudDogMSwKCS8vICAgICAgIGFzc2V0U2VuZGVyOiBhZGRyLAoJLy8gICAgICAgYXNzZXRSZWNlaXZlcjogZ2xvYmFscy5jdXJyZW50QXBwbGljYXRpb25BZGRyZXNzLAoJLy8gICAgIH0pCglpdHhuX2JlZ2luCglpbnRjIDIgLy8gIGF4ZmVyCglpdHhuX2ZpZWxkIFR5cGVFbnVtCgoJLy8gY29udHJhY3RzXENUQy5hbGdvLnRzOjIxOQoJLy8geGZlckFzc2V0OiB0aGlzLmFzc2V0LnZhbHVlCglieXRlYyAwIC8vICAiYXNhX2lkIgoJYXBwX2dsb2JhbF9nZXQKCWl0eG5fZmllbGQgWGZlckFzc2V0CgoJLy8gY29udHJhY3RzXENUQy5hbGdvLnRzOjIyMAoJLy8gYXNzZXRBbW91bnQ6IDEKCWludGMgMCAvLyAxCglpdHhuX2ZpZWxkIEFzc2V0QW1vdW50CgoJLy8gY29udHJhY3RzXENUQy5hbGdvLnRzOjIyMQoJLy8gYXNzZXRTZW5kZXI6IGFkZHIKCWZyYW1lX2RpZyAtMSAvLyBhZGRyOiBBZGRyZXNzCglpdHhuX2ZpZWxkIEFzc2V0U2VuZGVyCgoJLy8gY29udHJhY3RzXENUQy5hbGdvLnRzOjIyMgoJLy8gYXNzZXRSZWNlaXZlcjogZ2xvYmFscy5jdXJyZW50QXBwbGljYXRpb25BZGRyZXNzCglnbG9iYWwgQ3VycmVudEFwcGxpY2F0aW9uQWRkcmVzcwoJaXR4bl9maWVsZCBBc3NldFJlY2VpdmVyCgoJLy8gRmVlIGZpZWxkIG5vdCBzZXQsIGRlZmF1bHRpbmcgdG8gMAoJaW50YyAxIC8vIDAKCWl0eG5fZmllbGQgRmVlCgoJLy8gU3VibWl0IGlubmVyIHRyYW5zYWN0aW9uCglpdHhuX3N1Ym1pdAoKCS8vIEluYyBhc3NldCBhbW91bnQKCS8vIGNvbnRyYWN0c1xDVEMuYWxnby50czoyMjYKCS8vIHRoaXMuYXNzZXRBbW91bnQudmFsdWUgPSB0aGlzLmFzc2V0QW1vdW50LnZhbHVlICsgMQoJYnl0ZWMgMSAvLyAgImFzYV9hbXQiCglkdXAKCWFwcF9nbG9iYWxfZ2V0CglpbnRjIDAgLy8gMQoJKwoJYXBwX2dsb2JhbF9wdXQKCXJldHN1YgoKLy8gY2xhd2JhY2tOb0luY0Ftb3VudChhZGRyZXNzKXZvaWQKKmFiaV9yb3V0ZV9jbGF3YmFja05vSW5jQW1vdW50OgoJLy8gYWRkcjogYWRkcmVzcwoJdHhuYSBBcHBsaWNhdGlvbkFyZ3MgMQoJZHVwCglsZW4KCWludGMgNiAvLyAzMgoJPT0KCgkvLyBhcmd1bWVudCAwIChhZGRyKSBmb3IgY2xhd2JhY2tOb0luY0Ftb3VudCBtdXN0IGJlIGEgYWRkcmVzcwoJYXNzZXJ0CgoJLy8gZXhlY3V0ZSBjbGF3YmFja05vSW5jQW1vdW50KGFkZHJlc3Mpdm9pZAoJY2FsbHN1YiBjbGF3YmFja05vSW5jQW1vdW50CglpbnRjIDAgLy8gMQoJcmV0dXJuCgovLyBjbGF3YmFja05vSW5jQW1vdW50KGFkZHI6IEFkZHJlc3MpOiB2b2lkCi8vCi8vIENsYXdiYWNrIGFzc2V0IHRvIGFwcCB3aXRob3V0IGluY3JlbWVudGluZyBhbW91bnQKLy8gVGhpcyBtZXRob2QgaXMgY2FsbGVkIHdoZW4gdGhlIHByb3BlcnR5IGhhcyBiZWVuIGJvdWdodCwgYW5kIHRoZSBjb2luIGhhcyBiZWVuIHNob3duCi8vIEBwYXJhbSBhZGRyIGFkZHJlc3MgZnJvbSB3aGljaCB0byBjbGF3YmFjayBhc3NldApjbGF3YmFja05vSW5jQW1vdW50OgoJcHJvdG8gMSAwCgoJLy8gQWxsb3cgb25seSB0aGUgYXBwIGNyZWF0b3IgdG8gY2FsbCB0aGlzIG1ldGhvZAoJLy8gY29udHJhY3RzXENUQy5hbGdvLnRzOjIzNgoJLy8gdmVyaWZ5QXBwQ2FsbFR4bih0aGlzLnR4biwgeyBzZW5kZXI6IGdsb2JhbHMuY3JlYXRvckFkZHJlc3MgfSkKCS8vIHZlcmlmeSBzZW5kZXIKCXR4biBTZW5kZXIKCWdsb2JhbCBDcmVhdG9yQWRkcmVzcwoJPT0KCgkvLyB0cmFuc2FjdGlvbiB2ZXJpZmljYXRpb24gZmFpbGVkOiB7InR4biI6InRoaXMudHhuIiwiZmllbGQiOiJzZW5kZXIiLCJleHBlY3RlZCI6Imdsb2JhbHMuY3JlYXRvckFkZHJlc3MifQoJYXNzZXJ0CgoJLy8gQ2xhd2JhY2sgYXNzZXRzIHRvIGFwcAoJLy8gY29udHJhY3RzXENUQy5hbGdvLnRzOjIzOQoJLy8gc2VuZEFzc2V0VHJhbnNmZXIoewoJLy8gICAgICAgeGZlckFzc2V0OiB0aGlzLmFzc2V0LnZhbHVlLAoJLy8gICAgICAgYXNzZXRBbW91bnQ6IDEsCgkvLyAgICAgICBhc3NldFNlbmRlcjogYWRkciwKCS8vICAgICAgIGFzc2V0UmVjZWl2ZXI6IGdsb2JhbHMuY3VycmVudEFwcGxpY2F0aW9uQWRkcmVzcywKCS8vICAgICB9KQoJaXR4bl9iZWdpbgoJaW50YyAyIC8vICBheGZlcgoJaXR4bl9maWVsZCBUeXBlRW51bQoKCS8vIGNvbnRyYWN0c1xDVEMuYWxnby50czoyNDAKCS8vIHhmZXJBc3NldDogdGhpcy5hc3NldC52YWx1ZQoJYnl0ZWMgMCAvLyAgImFzYV9pZCIKCWFwcF9nbG9iYWxfZ2V0CglpdHhuX2ZpZWxkIFhmZXJBc3NldAoKCS8vIGNvbnRyYWN0c1xDVEMuYWxnby50czoyNDEKCS8vIGFzc2V0QW1vdW50OiAxCglpbnRjIDAgLy8gMQoJaXR4bl9maWVsZCBBc3NldEFtb3VudAoKCS8vIGNvbnRyYWN0c1xDVEMuYWxnby50czoyNDIKCS8vIGFzc2V0U2VuZGVyOiBhZGRyCglmcmFtZV9kaWcgLTEgLy8gYWRkcjogQWRkcmVzcwoJaXR4bl9maWVsZCBBc3NldFNlbmRlcgoKCS8vIGNvbnRyYWN0c1xDVEMuYWxnby50czoyNDMKCS8vIGFzc2V0UmVjZWl2ZXI6IGdsb2JhbHMuY3VycmVudEFwcGxpY2F0aW9uQWRkcmVzcwoJZ2xvYmFsIEN1cnJlbnRBcHBsaWNhdGlvbkFkZHJlc3MKCWl0eG5fZmllbGQgQXNzZXRSZWNlaXZlcgoKCS8vIEZlZSBmaWVsZCBub3Qgc2V0LCBkZWZhdWx0aW5nIHRvIDAKCWludGMgMSAvLyAwCglpdHhuX2ZpZWxkIEZlZQoKCS8vIFN1Ym1pdCBpbm5lciB0cmFuc2FjdGlvbgoJaXR4bl9zdWJtaXQKCXJldHN1YgoKLy8gZGVsZXRlQXNzZXQoKXZvaWQKKmFiaV9yb3V0ZV9kZWxldGVBc3NldDoKCS8vIGV4ZWN1dGUgZGVsZXRlQXNzZXQoKXZvaWQKCWNhbGxzdWIgZGVsZXRlQXNzZXQKCWludGMgMCAvLyAxCglyZXR1cm4KCi8vIGRlbGV0ZUFzc2V0KCk6IHZvaWQKLy8KLy8gRGVsZXRlIGFzc2V0IHdpdGhpbiBhcHAKZGVsZXRlQXNzZXQ6Cglwcm90byAwIDAKCgkvLyBBbGxvdyBvbmx5IHRoZSBhcHAgY3JlYXRvciB0byBjYWxsIHRoaXMgbWV0aG9kCgkvLyBjb250cmFjdHNcQ1RDLmFsZ28udHM6MjUyCgkvLyB2ZXJpZnlBcHBDYWxsVHhuKHRoaXMudHhuLCB7IHNlbmRlcjogZ2xvYmFscy5jcmVhdG9yQWRkcmVzcyB9KQoJLy8gdmVyaWZ5IHNlbmRlcgoJdHhuIFNlbmRlcgoJZ2xvYmFsIENyZWF0b3JBZGRyZXNzCgk9PQoKCS8vIHRyYW5zYWN0aW9uIHZlcmlmaWNhdGlvbiBmYWlsZWQ6IHsidHhuIjoidGhpcy50eG4iLCJmaWVsZCI6InNlbmRlciIsImV4cGVjdGVkIjoiZ2xvYmFscy5jcmVhdG9yQWRkcmVzcyJ9Cglhc3NlcnQKCgkvLyBEZWxldGUgYXNzZXQKCS8vIGNvbnRyYWN0c1xDVEMuYWxnby50czoyNTYKCS8vIHNlbmRBc3NldENvbmZpZyh7CgkvLyAgICAgICBjb25maWdBc3NldDogdGhpcy5hc3NldC52YWx1ZSwKCS8vICAgICB9KQoJaXR4bl9iZWdpbgoJaW50YyA0IC8vICBhY2ZnCglpdHhuX2ZpZWxkIFR5cGVFbnVtCgoJLy8gY29udHJhY3RzXENUQy5hbGdvLnRzOjI1NwoJLy8gY29uZmlnQXNzZXQ6IHRoaXMuYXNzZXQudmFsdWUKCWJ5dGVjIDAgLy8gICJhc2FfaWQiCglhcHBfZ2xvYmFsX2dldAoJaXR4bl9maWVsZCBDb25maWdBc3NldAoKCS8vIEZlZSBmaWVsZCBub3Qgc2V0LCBkZWZhdWx0aW5nIHRvIDAKCWludGMgMSAvLyAwCglpdHhuX2ZpZWxkIEZlZQoKCS8vIFN1Ym1pdCBpbm5lciB0cmFuc2FjdGlvbgoJaXR4bl9zdWJtaXQKCXJldHN1YgoKLy8gZGVsZXRlQXBwbGljYXRpb24oKXZvaWQKKmFiaV9yb3V0ZV9kZWxldGVBcHBsaWNhdGlvbjoKCS8vIGV4ZWN1dGUgZGVsZXRlQXBwbGljYXRpb24oKXZvaWQKCWNhbGxzdWIgZGVsZXRlQXBwbGljYXRpb24KCWludGMgMCAvLyAxCglyZXR1cm4KCi8vIGRlbGV0ZUFwcGxpY2F0aW9uKCk6IHZvaWQKLy8KLy8gRGVsZXRlIGFwcCB3aXRoIEFCSSBtZXRob2QKZGVsZXRlQXBwbGljYXRpb246Cglwcm90byAwIDAKCgkvLyBBbGxvdyBvbmx5IHRoZSBhcHAgY3JlYXRvciB0byBjYWxsIHRoaXMgbWV0aG9kCgkvLyBjb250cmFjdHNcQ1RDLmFsZ28udHM6MjY2CgkvLyB2ZXJpZnlBcHBDYWxsVHhuKHRoaXMudHhuLCB7IHNlbmRlcjogZ2xvYmFscy5jcmVhdG9yQWRkcmVzcyB9KQoJLy8gdmVyaWZ5IHNlbmRlcgoJdHhuIFNlbmRlcgoJZ2xvYmFsIENyZWF0b3JBZGRyZXNzCgk9PQoKCS8vIHRyYW5zYWN0aW9uIHZlcmlmaWNhdGlvbiBmYWlsZWQ6IHsidHhuIjoidGhpcy50eG4iLCJmaWVsZCI6InNlbmRlciIsImV4cGVjdGVkIjoiZ2xvYmFscy5jcmVhdG9yQWRkcmVzcyJ9Cglhc3NlcnQKCgkvLyBTZW5kIGJhY2sgQWxnb3MgdG8gYXBwIGNyZWF0b3IgYWNjb3VudAoJLy8gY29udHJhY3RzXENUQy5hbGdvLnRzOjI2OQoJLy8gc2VuZFBheW1lbnQoewoJLy8gICAgICAgcmVjZWl2ZXI6IGdsb2JhbHMuY3JlYXRvckFkZHJlc3MsCgkvLyAgICAgICBhbW91bnQ6IDAsCgkvLyAgICAgICBjbG9zZVJlbWFpbmRlclRvOiBnbG9iYWxzLmNyZWF0b3JBZGRyZXNzLAoJLy8gICAgIH0pCglpdHhuX2JlZ2luCglpbnRjIDAgLy8gIHBheQoJaXR4bl9maWVsZCBUeXBlRW51bQoKCS8vIGNvbnRyYWN0c1xDVEMuYWxnby50czoyNzAKCS8vIHJlY2VpdmVyOiBnbG9iYWxzLmNyZWF0b3JBZGRyZXNzCglnbG9iYWwgQ3JlYXRvckFkZHJlc3MKCWl0eG5fZmllbGQgUmVjZWl2ZXIKCgkvLyBjb250cmFjdHNcQ1RDLmFsZ28udHM6MjcxCgkvLyBhbW91bnQ6IDAKCWludGMgMSAvLyAwCglpdHhuX2ZpZWxkIEFtb3VudAoKCS8vIGNvbnRyYWN0c1xDVEMuYWxnby50czoyNzIKCS8vIGNsb3NlUmVtYWluZGVyVG86IGdsb2JhbHMuY3JlYXRvckFkZHJlc3MKCWdsb2JhbCBDcmVhdG9yQWRkcmVzcwoJaXR4bl9maWVsZCBDbG9zZVJlbWFpbmRlclRvCgoJLy8gRmVlIGZpZWxkIG5vdCBzZXQsIGRlZmF1bHRpbmcgdG8gMAoJaW50YyAxIC8vIDAKCWl0eG5fZmllbGQgRmVlCgoJLy8gU3VibWl0IGlubmVyIHRyYW5zYWN0aW9uCglpdHhuX3N1Ym1pdAoJcmV0c3ViCgoqY3JlYXRlX05vT3A6CglwdXNoYnl0ZXMgMHhiODQ0N2IzNiAvLyBtZXRob2QgImNyZWF0ZUFwcGxpY2F0aW9uKCl2b2lkIgoJdHhuYSBBcHBsaWNhdGlvbkFyZ3MgMAoJbWF0Y2ggKmFiaV9yb3V0ZV9jcmVhdGVBcHBsaWNhdGlvbgoKCS8vIHRoaXMgY29udHJhY3QgZG9lcyBub3QgaW1wbGVtZW50IHRoZSBnaXZlbiBBQkkgbWV0aG9kIGZvciBjcmVhdGUgTm9PcAoJZXJyCgoqY2FsbF9Ob09wOgoJcHVzaGJ5dGVzIDB4NDJlNzM3NGUgLy8gbWV0aG9kICJib290c3RyYXAodWludDY0LHVpbnQ2NCx1aW50NjQsdWludDY0KXZvaWQiCglwdXNoYnl0ZXMgMHg4NGQ0YWE5YSAvLyBtZXRob2QgImdldEFwcENyZWF0b3JBZGRyZXNzKClhZGRyZXNzIgoJcHVzaGJ5dGVzIDB4ZWY5NTc3ZGMgLy8gbWV0aG9kICJnZXRBcHBWZXJzaW9uKClzdHJpbmciCglwdXNoYnl0ZXMgMHhkMjI5MWQ0ZCAvLyBtZXRob2QgImdldEFzc2V0QW1vdW50SW5pdGlhbCgpdWludDY0IgoJcHVzaGJ5dGVzIDB4NDEzZTIxZTUgLy8gbWV0aG9kICJnZXRBc3NldEFtb3VudCgpdWludDY0IgoJcHVzaGJ5dGVzIDB4ZDlhZDFjNWYgLy8gbWV0aG9kICJnZXRBc3NldFByaWNlKCl1aW50NjQiCglwdXNoYnl0ZXMgMHhhYjhkZTU0MSAvLyBtZXRob2QgImdldEFzc2V0SUQoKXVpbnQ2NCIKCXB1c2hieXRlcyAweGU2NGNjNzA2IC8vIG1ldGhvZCAiZ2V0U2VsbFBlcmlvZEVuZCgpdWludDY0IgoJcHVzaGJ5dGVzIDB4MDFhNzI1MzggLy8gbWV0aG9kICJidXlBc3NldChwYXkpdm9pZCIKCXB1c2hieXRlcyAweDQzNDE4NWFkIC8vIG1ldGhvZCAic2VuZEFsZ29zVG9DcmVhdG9yKCl2b2lkIgoJcHVzaGJ5dGVzIDB4OTFmY2Q1OTggLy8gbWV0aG9kICJjbGF3YmFjayhhZGRyZXNzKXZvaWQiCglwdXNoYnl0ZXMgMHg1NmM5NDRjOSAvLyBtZXRob2QgImNsYXdiYWNrTm9JbmNBbW91bnQoYWRkcmVzcyl2b2lkIgoJcHVzaGJ5dGVzIDB4YTQxYjBjODQgLy8gbWV0aG9kICJkZWxldGVBc3NldCgpdm9pZCIKCXR4bmEgQXBwbGljYXRpb25BcmdzIDAKCW1hdGNoICphYmlfcm91dGVfYm9vdHN0cmFwICphYmlfcm91dGVfZ2V0QXBwQ3JlYXRvckFkZHJlc3MgKmFiaV9yb3V0ZV9nZXRBcHBWZXJzaW9uICphYmlfcm91dGVfZ2V0QXNzZXRBbW91bnRJbml0aWFsICphYmlfcm91dGVfZ2V0QXNzZXRBbW91bnQgKmFiaV9yb3V0ZV9nZXRBc3NldFByaWNlICphYmlfcm91dGVfZ2V0QXNzZXRJRCAqYWJpX3JvdXRlX2dldFNlbGxQZXJpb2RFbmQgKmFiaV9yb3V0ZV9idXlBc3NldCAqYWJpX3JvdXRlX3NlbmRBbGdvc1RvQ3JlYXRvciAqYWJpX3JvdXRlX2NsYXdiYWNrICphYmlfcm91dGVfY2xhd2JhY2tOb0luY0Ftb3VudCAqYWJpX3JvdXRlX2RlbGV0ZUFzc2V0CgoJLy8gdGhpcyBjb250cmFjdCBkb2VzIG5vdCBpbXBsZW1lbnQgdGhlIGdpdmVuIEFCSSBtZXRob2QgZm9yIGNhbGwgTm9PcAoJZXJyCgoqY2FsbF9EZWxldGVBcHBsaWNhdGlvbjoKCXB1c2hieXRlcyAweDI0ODdjMzJjIC8vIG1ldGhvZCAiZGVsZXRlQXBwbGljYXRpb24oKXZvaWQiCgl0eG5hIEFwcGxpY2F0aW9uQXJncyAwCgltYXRjaCAqYWJpX3JvdXRlX2RlbGV0ZUFwcGxpY2F0aW9uCgoJLy8gdGhpcyBjb250cmFjdCBkb2VzIG5vdCBpbXBsZW1lbnQgdGhlIGdpdmVuIEFCSSBtZXRob2QgZm9yIGNhbGwgRGVsZXRlQXBwbGljYXRpb24KCWVycg==",
     "clear": "I3ByYWdtYSB2ZXJzaW9uIDEw"
   },
   "byteCode": {
-    "approval": "CiABASYBBBUffHUxGBSBBgsxGQiNDACwAAAAAAAAAAAAAACiAAAAAAAAAAAAAACKAgGL/4v+CImKAgGL/4v+D0EACIv/i/4JQgAFi/6L/wmJKDYaA1cCADYaAhc2GgEXiAAFFlCwIkOKAwGAAIv9gANzdW0SQQAMi/6L/4j/sIwAQgAfi/2ACmRpZmZlcmVuY2USQQAMi/6L/4j/m4wAQgABAIsAjACJKDYaAVcCAIgADEkVFlcGAkxQULAiQ4oBAYAHSGVsbG8sIIv/UIkiQ4AEuER7NjYaAI4B//EAgAR2p+8zgAQCvs4RNhoAjgL/Xv+1AA==",
+    "approval": "CiAHAQAEwM8kAwUgJgoGYXNhX2lkB2FzYV9hbXQEFR98dQlhc2FfdG90YWwJYXNhX3ByaWNlA2VuZAVhc2FfdgRhcGNhA2FwdgAxGBSBBgsxGQiNDALaAAAAAAAAAAADSALMAAAAAAAAAAAAAACIAAIiQ4oAACcIgAYABHYxLjBnJwcyCWcrI2cpI2cnBCNnKCNnJwUjZycGI2eJNhoEFzYaAxc2GgIXNhoBF4gAAiJDigQAJwkxADIJEkQrZCMSRLEhBLIQi/6yIiOyI4AYQ29pbiBmb3IgQ2lyY2xlIG9mIFRydXN0siaABENUQzGyJYAiaHR0cHM6Ly9hbGdvcmFuZC5odS9jdGMxL2N0YzEuaHRtbLInI7IkMgqyKTIKsioyCrIrMgqyLCOyAbO0PIwAK4v+ZymL/mcnBIv/ZyiLAGcnBTIHi/0IZycGi/xniSqIAARQsCJDigABJwdkiSqIAAxJFRZXBgJMUFCwIkOKAAEnCGRXAgCJKogABRZQsCJDigABK2SJKogABRZQsCJDigABK2SJKogABRZQsCJDigABJwRkiSqIAAUWULAiQ4oAAShkiSqIAAUWULAiQ4oAAScFZIkxFiIJSTgQIhJEiAACIkOKAQAyBycFZA5EMQAoZHAASCMSRIv/OAAxABJEi/84BzIKEkSL/zgIJwRkD0SL/zgIJwRkDkQpZCMNRLEkshAoZLIRI7ISMgqyFCOyAbOxIQWyEChksi0xALIuI7IvI7IBs7EkshAoZLIRMQCyFCKyEiOyAbOxIQWyEChksi0xALIuIrIvI7IBsylJZCIJZ4mIAAIiQ4oAACcJMQAyCRJEMgpzAEiMAIsAJQ1BABKxIrIQMgmyB4sAJQmyCCOyAbOJNhoBSRUhBhJEiAACIkOKAQAxADIJEkSxJLIQKGSyESKyEov/shMyCrIUI7IBsylJZCIIZ4k2GgFJFSEGEkSIAAIiQ4oBADEAMgkSRLEkshAoZLIRIrISi/+yEzIKshQjsgGziYgAAiJDigAAMQAyCRJEsSEEshAoZLIhI7IBs4mIAAIiQ4oAADEAMgkSRLEishAyCbIHI7IIMgmyCSOyAbOJgAS4RHs2NhoAjgH9KACABELnN06ABITUqpqABO+Vd9yABNIpHU2ABEE+IeWABNmtHF+ABKuN5UGABOZMxwaABAGnJTiABENBha2ABJH81ZiABFbJRMmABKQbDIQ2GgCODfzo/Z39rP3G/dX95P30/gP+E/6y/uP/GP9HAIAEJIfDLDYaAI4B/1UA",
     "clear": "Cg=="
   },
   "compilerInfo": {

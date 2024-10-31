@@ -1,12 +1,12 @@
 import { describe, test, expect, beforeAll, beforeEach } from '@jest/globals';
 import { algorandFixture } from '@algorandfoundation/algokit-utils/testing';
 import * as algokit from '@algorandfoundation/algokit-utils';
-import { CTCClient } from '../contracts/clients/CTCClient';
+import { CtcClient } from '../contracts/clients/CTCClient';
 
 const fixture = algorandFixture();
 algokit.Config.configure({ populateAppCallResources: true });
 
-let appClient: CTCClient;
+let appClient: CtcClient;
 
 describe('CTC', () => {
   beforeEach(fixture.beforeEach);
@@ -16,7 +16,7 @@ describe('CTC', () => {
     const { testAccount } = fixture.context;
     const { algorand } = fixture;
 
-    appClient = new CTCClient(
+    appClient = new CtcClient(
       {
         sender: testAccount,
         resolveBy: 'id',
